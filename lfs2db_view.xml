@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+   <data>
+		<!-- View to synchronize BSM data -->
+		<record model="ir.ui.view" id="view_bsm_importer">
+	    	<field name="name">bsm.importer.form</field>
+	    	<field name="model">bsm.importer</field>
+			<field name="arch" type="xml">
+				<form string="BSM Importer" version="7.0">
+					<group string="BSM">
+						<div>
+							<label for="imei_selection" string="IMEI code list" />
+							<field name="imei_selection" />
+						</div>
+						<newline/>
+						<div class="oe_inline" style="float: left;">
+							<button name="getSerials" type="object" string="Read Serials" />
+						</div>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_maventa_settings">
+			<field name="name">maventa.settings.action</field>
+			<field name="view_id" ref="view_maventa_settings"/>
+			<field name="domain"></field>
+			<field name="res_model">account.maventa_settings</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<!-- <field name="res_id">0</field> -->
+			<field name="target">current</field>
+		</record>
+		
+		<menuitem id="maventa_settings" name="Maventa Settings" parent="account.menu_finance_configuration" action="action_maventa_settings" />
+		<menuitem id="maventa_supplier_invoices" name="Maventa" parent="account.menu_finance_payables" />
+	</data>
+</openerp>
+		   
