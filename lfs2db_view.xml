@@ -21,19 +21,19 @@
 			</field>
 		</record>
 
-		<record model="ir.actions.act_window" id="action_maventa_settings">
-			<field name="name">maventa.settings.action</field>
-			<field name="view_id" ref="view_maventa_settings"/>
+		<record model="ir.actions.act_window" id="action_bsm_import">
+			<field name="name">bsm.import.action</field>
+			<field name="view_id" ref="view_bsm_importer"/>
 			<field name="domain"></field>
-			<field name="res_model">account.maventa_settings</field>
+			<field name="res_model">bsm.importer</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">form</field>
 			<!-- <field name="res_id">0</field> -->
 			<field name="target">current</field>
 		</record>
 		
-		<menuitem id="maventa_settings" name="Maventa Settings" parent="account.menu_finance_configuration" action="action_maventa_settings" />
-		<menuitem id="maventa_supplier_invoices" name="Maventa" parent="account.menu_finance_payables" />
+		<menuitem id="bsm_importer_menuitem" name="BSM Importer" parent="" action="action_bsm_import" />
+
 	</data>
 </openerp>
 		   

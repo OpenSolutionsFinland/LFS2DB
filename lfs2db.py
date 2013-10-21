@@ -22,13 +22,17 @@ class bsm_importer(osv.osv_memory):
     def getSerials(self, cr, uid, context=None):
         print 'getSerials()'
         # Read local file from the file system
+        try:
+            f = open(LOCALFILEPATH, 'r')
+            for line in f.readline():
+                print 'line: ' + str(line)
+        except IOError as e:
+            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+        except:
+            print 'lol random error'
         
         return True
     
-    
-    _defaults={
-        
-    }
 
 bsm_importer()
 
