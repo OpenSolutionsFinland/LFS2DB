@@ -32,7 +32,7 @@
 			<field name="target">current</field>
 		</record>
 		
-		<menuitem id="bsm_importer_menuitem" name="BSM Importer" parent="" action="action_bsm_import" />
+		<menuitem id="bsm_importer_menuitem" name="BSM Importer" parent="menu_traceability" action="action_bsm_import" />
 
 	</data>
 </openerp>
