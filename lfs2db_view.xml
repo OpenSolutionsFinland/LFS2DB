@@ -1,7 +1,24 @@
 <?xml version="1.0"?>
 <openerp>
    <data>
-		<!-- View to synchronize BSM data -->
+	   
+	   <!-- Inherited split lot form with IMEI code selection -->
+	   <record model="ir.ui.view" id="split_lot_form_view_extension">
+    		<field name="name">product.normal.form.inherit</field>
+    		<field name="model">stock.move</field>
+    		<field name="inherit_id" ref="stock.view_move_form"/>
+    		<field name="arch" type="xml">
+        		<field name="prodlot_id" position="after">
+					<field name="prodlot_id.bsm_id.bsm_product_code" string="Product code" />
+					<field name="prodlot_id.bsm_id.bsm_imei_code" string="IMEI code" />
+				</field>
+    		</field>
+		</record>
+	   
+	   <!-- Inherited stock.move form with bsm data -->
+	   
+	   
+		<!-- View to synchronize BSM data
 		<record model="ir.ui.view" id="view_bsm_importer">
 	    	<field name="name">bsm.importer.form</field>
 	    	<field name="model">bsm.importer</field>
@@ -28,12 +45,12 @@
 			<field name="res_model">bsm.importer</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">form</field>
-			<!-- <field name="res_id">0</field> -->
+
 			<field name="target">current</field>
 		</record>
 		
 		<menuitem id="bsm_importer_menuitem" name="BSM Importer" parent="menu_traceability" action="action_bsm_import" />
-
+		 -->
 	</data>
 </openerp>
 		   
