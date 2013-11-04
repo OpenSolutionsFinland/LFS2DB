@@ -31,6 +31,18 @@ class prodlot_bsm(osv.osv_memory):
 
 prodlot_bsm()
 
+
+class stock_move_bsm(osv.osv_memory):
+    _name = 'stock.move'
+    _inherit = 'stock.move'
+
+    _columns = {
+        'bsm_imei_code': fields.related('prodlot_id.bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI Code"),
+        'bsm_product_code': fields.related('prodlot_id.bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product Code")
+    }
+
+prodlot_bsm()
+
 '''
 BSM file importer UI methods and data deserialization
 '''

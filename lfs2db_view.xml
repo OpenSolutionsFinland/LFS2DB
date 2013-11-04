@@ -3,22 +3,19 @@
    <data>
 	   
 	   <!-- Inherited split lot form with IMEI code selection -->
-	   <!-- 
+	   <!-- -->
 	   <record model="ir.ui.view" id="stock_move_extension">
     		<field name="name">stock.move.form.extension</field>
     		<field name="model">stock.move</field>
     		<field name="inherit_id" ref="stock.view_move_form"/>
     		<field name="arch" type="xml">
         		<field name="prodlot_id" position="after">
-					
-					<field name="prodlot_id.bsm_id.bsm_product_code" string="Product code" />
-					<field name="prodlot_id.bsm_id.bsm_imei_code" string="IMEI code" />
-					
-					<field name="prodlot_id.bsm_id" string="BSM" />
+					<field name="bsm_product_code" string="Product code" />
+					<field name="bsm_imei_code" string="IMEI code" />
 				</field>
     		</field>
 		</record>
-	   -->
+	   
 	   <!-- Inherited stock.move form with bsm data -->
 	   
 	   
