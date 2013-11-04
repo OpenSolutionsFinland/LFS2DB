@@ -10,10 +10,6 @@ class bsm_importer(osv.osv_memory):
     _name='bsm.importer'
     #_inherit='mrp.product.produce'
     
-    _columns={
-        'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code', selection=_get_selection)
-    }
-    
     def _get_selection(self, cr, uid, context=None):
         print 'bsm.importer._get_selection'
         obj = self.pool.get('bsm.data')
@@ -59,7 +55,11 @@ class bsm_importer(osv.osv_memory):
         '''
         return True
     
-
+    
+    _columns={
+        'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code', selection=_get_selection)
+    }
+    
 bsm_importer()
 
 '''
