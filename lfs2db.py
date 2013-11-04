@@ -1,5 +1,36 @@
 from osv import fields, osv
 from datetime import datetime as dt
+
+'''
+Class for holding the data
+'''
+class bsm_data(osv.osv_memory):
+    _name = 'bsm.data'
+    
+    _columns={
+        'bsm_imei_code': fields.char('IMEI Code', size=15),
+        'bsm_product_code': fields.char('Product code', size=64),
+        'bsm_date': fields.datetime('Import date'),
+        'bsm_used': fields.boolean('Used')
+        # TODO needs a relative field pointing to lot serials?
+    }
+    
+    _defaults = {
+        'bsm_used': False
+    }
+    
+bsm_data()
+
+class prodlot_bsm(osv.osv_memory):
+    _name = 'stock.production.lot'
+    _inherit = 'stock.production.lot'
+
+    _columns = {
+        'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
+    }
+
+prodlot_bsm()
+
 '''
 BSM file importer UI methods and data deserialization
 '''
@@ -62,32 +93,3 @@ class bsm_importer(osv.osv_memory):
     
 bsm_importer()
 
-'''
-Class for holding the data
-'''
-class bsm_data(osv.osv_memory):
-    _name = 'bsm.data'
-    
-    _columns={
-        'bsm_imei_code': fields.char('IMEI Code', size=15),
-        'bsm_product_code': fields.char('Product code', size=64),
-        'bsm_date': fields.datetime('Import date'),
-        'bsm_used': fields.boolean('Used')
-        # TODO needs a relative field pointing to lot serials?
-    }
-    
-    _defaults = {
-        'bsm_used': False
-    }
-    
-bsm_data()
-
-class prodlot_bsm(osv.osv_memory):
-    _name = 'stock.production.lot'
-    _inherit = 'stock.production.lot'
-
-    _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
-    }
-
-prodlot_bsm()
