@@ -25,6 +25,7 @@ class bsm_importer(osv.osv_memory):
     def getSerials(self, cr, uid, context=None):
         print 'getSerials()'
         # Read local file from the file system
+        '''
         try:
             f = open(self.LOCALFILEPATH, 'r')
             for line in f:
@@ -55,7 +56,7 @@ class bsm_importer(osv.osv_memory):
             print fe.strerror
         except:
             print 'lol random error'
-        
+        '''
         return True
     
 
