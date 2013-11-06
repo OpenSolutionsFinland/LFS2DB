@@ -34,7 +34,7 @@
 	    	<field name="name">bsm.importer.form</field>
 	    	<field name="model">bsm.importer</field>
 			<field name="arch" type="xml">
-				<form string="BSM Importer" version="7.0">
+				<form string="BSM Importer" version="7.0" create="false" edit="false">
 					<group string="BSM">
 						<div>
 							<label for="imei_selection" string="IMEI code list" />
