@@ -74,7 +74,7 @@ class stock_move_bsm(osv.osv_memory):
     _inherit = 'stock.move'
 
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'BSM', readonly=True)#fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM"),
+        'bsm_id': fields.many2one('bsm.data', 'BSM')#fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM"),
         
         #'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="Product Code")
         
