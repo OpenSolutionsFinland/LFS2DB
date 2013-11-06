@@ -35,7 +35,18 @@ prodlot_bsm()
 class stock_move_split_bsm(osv.osv_memory):
     _name = 'stock.move.split'
     _inherit = 'stock.move.split'
-
+    
+    def split_lot(self, cr, uid, ids, context=None):
+        print 'bsm split_lot'
+        if context:
+            print str(context)
+        split = self.pool.get('stock.move.split').browse(cr, uid, ids)
+        if split:
+            print 'saving bsm id'
+        # Call super class 
+        super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
+        return True
+        
     _columns = {
         'bsm_id': fields.many2one('bsm.data', 'Select BSM')
         #fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
