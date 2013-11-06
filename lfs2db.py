@@ -44,6 +44,7 @@ class stock_move_split_bsm(osv.osv_memory):
         if context:
             print str(context)
         super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
+        print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
             print 'saving bsm id ' + str(self.selectedId) + ' to move'
             move = self.pool.get('stock.move').browse(cr, uid, ids, context)

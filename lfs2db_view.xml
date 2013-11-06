@@ -23,8 +23,10 @@
     		<field name="inherit_id" ref="stock.view_move_form"/>
     		<field name="arch" type="xml">
         		<field name="prodlot_id" position="after">
+					<newline/>
 					<label for="bsm_id" string="BSM" />
 					<field name="bsm_id" readonly="True"/>
+					<newline/>
 				</field>
     		</field>
 		</record>
