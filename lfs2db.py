@@ -33,12 +33,11 @@ prodlot_bsm()
 
 
 class stock_move_split_bsm(osv.osv_memory):
-    _name = 'stock.move.split'
-    _inherit = 'stock.move.split'
+    _name = 'stock.move.split.line'
+    _inherit = 'stock.move.split.line'
 
     _columns = {
-        #'bsm_imei_code': fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="IMEI Code")
-        'imei_code': fields.char('IMEI', size=15)
+        'bsm_id': fields.related('prodlot_id','bsm_id','bsm_id',type='char', relation="bsm.data", string="IMEI Code")
     }
 
 stock_move_split_bsm()
