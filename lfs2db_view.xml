@@ -44,9 +44,11 @@
 						<div class="oe_inline" style="float: left;">
 							<button name="getSerials" type="object" string="Read Serials" />
 						</div>
+						<!-- 
 						<div class="oe_inline" style="float: left;">
 							<button name="addBSM" type="object" string="Add BSM line" />
 						</div>
+					    -->
 					</group>
 				</form>
 			</field>
@@ -79,13 +81,7 @@
  							<field name="bsm_product_code"/>
  						</div>
  						<newline/>
- 						
  					</group>
-					<footer>
-						<button name="save" string="Save" type="object" class="oe_highlight" />
-					    or
-					    <button string="Cancel" class="oe_link" special="cancel" />
-					</footer>
  				</form>
  			</field>
  		</record>

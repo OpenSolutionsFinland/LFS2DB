@@ -137,11 +137,6 @@ class bsm_importer(osv.osv_memory):
             'context': context,
        }
 
-    #def save(self, cr, uid, context=None):
-    #    print 'save'
-    #    bsm_obj = self.pool.get('bsm.data')
-    #    bsm_obj.create 
-    #    return True
     _columns={
         'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code', selection=_get_selection)
     }
