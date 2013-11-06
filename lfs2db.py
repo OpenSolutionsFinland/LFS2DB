@@ -73,13 +73,13 @@ class stock_move_split_bsm(osv.osv_memory):
             print 'context: ' + str(context)
             print 'selected: ' + str(bsm_id) + ' move id: ' + str(ids)
             self.selectedId = bsm_id
-            move = self.pool.get('stock.move').browse(cr, uid, ids)
-            if move:
+            #move = self.pool.get('stock.move').browse(cr, uid, ids)
+            #if move:
                 #move.prodlot_id.bsm_id = self.pool.get('bsm_data').browse(cr, uid, context['selected_bsm'], context) # get selected value
-                print 'saving bsm id'
-                print 'move prodlot: ' + str(move.prodlot_id)
-                bsm = self.pool.get('bsm_data').browse(cr, uid, bsm_id, context)
-                move.write(cr, uid, {'bsm_id':bsm})
+                #print 'saving bsm id'
+                #print 'move prodlot: ' + str(move.prodlot_id)
+                #bsm = self.pool.get('bsm_data').browse(cr, uid, bsm_id, context)
+                #move.write(cr, uid, {'bsm_id':bsm})
             #print 'selected: ' + str(bsm_ids)
             #value['bsm_id': bsm_ids]
         return True
