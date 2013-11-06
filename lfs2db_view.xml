@@ -22,12 +22,9 @@
     		<field name="model">stock.move</field>
     		<field name="inherit_id" ref="stock.view_move_form"/>
     		<field name="arch" type="xml">
-        		<button name="365" position="after">
+        		<field name="prodlot_id" position="after">
 					<field name="bsm_id" string="BSM" />
-					<!--
-					<field name="bsm_imei_code" string="IMEI code" />
-					-->
-				</button>
+				</field>
     		</field>
 		</record>
 	   
