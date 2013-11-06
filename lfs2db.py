@@ -56,7 +56,8 @@ class stock_move_split_bsm(osv.osv_memory):
                 print 'moves: ' + str(len(moves))
                 if moves[0].prodlot_id:
                     print 'production lot found'
-                    moves[0].prodlot_id.write(cr, uid, {'bsm_id': bsm})
+                    prodlot_obj = self.pool.get('stock.production.lot')
+                    prodlot_obj.write(cr, uid, moves[0].prodlot_id.id, {'bsm_id': bsm})
                 else:
                     print 'saving to move'
                     moves[0].write(cr, uid, {'bsm_id':bsm})
