@@ -1,5 +1,4 @@
 from osv import fields, osv
-from datetime import datetime as dtfrom osv import fields, osv
 from datetime import datetime as dt
 
 '''
