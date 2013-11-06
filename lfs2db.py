@@ -1,4 +1,5 @@
 from osv import fields, osv
+from datetime import datetime as dtfrom osv import fields, osv
 from datetime import datetime as dt
 
 '''
@@ -32,6 +33,29 @@ class prodlot_bsm(osv.osv_memory):
 prodlot_bsm()
 
 
+class stock_move_split_bsm(osv.osv_memory):
+    _name = 'stock.move.split'
+    _inherit = 'stock.move.split'
+
+    _columns = {
+        #'bsm_imei_code': fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="IMEI Code")
+        'imei_code': fields.char('IMEI', size=15)
+    }
+
+stock_move_split_bsm()
+
+
+class prodlot_bsm(osv.osv_memory):
+    _name = 'stock.production.lot'
+    _inherit = 'stock.production.lot'
+
+    _columns = {
+        'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
+    }
+
+prodlot_bsm()
+
+
 class stock_move_bsm(osv.osv_memory):
     _name = 'stock.move'
     _inherit = 'stock.move'
@@ -41,7 +65,7 @@ class stock_move_bsm(osv.osv_memory):
         'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="Product Code")
     }
 
-prodlot_bsm()
+stock_move_bsm()
 
 '''
 BSM file importer UI methods and data deserialization
