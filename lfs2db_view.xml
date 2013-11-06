@@ -32,6 +32,25 @@
 				</sheet>
     		</field>
 		</record>
+		
+ 	   <!-- Inherited stock.production.lot form with bsm data -->
+ 	   <record model="ir.ui.view" id="prod_lot_extension">
+     		<field name="name">stock.production.lot.extension</field>
+     		<field name="model">stock.production.lot</field>
+     		<field name="inherit_id" ref="stock.view_move_form"/>
+     		<field name="arch" type="xml">
+         		<notebook position="inside">
+					<page string="BSM">
+ 						<group string="BSM Information">
+ 							<div>
+ 								<label for="bsm_id" string="BSM" />
+ 								<field name="bsm_id" readonly="True"/>
+ 							</div>
+ 						</group>
+					</page>
+ 				</notebook>
+     		</field>
+ 		</record>
 	   
 		<!-- View to synchronize BSM data -->
 		<record model="ir.ui.view" id="view_bsm_importer">
