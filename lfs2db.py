@@ -41,24 +41,26 @@ class stock_move_split_bsm(osv.osv_memory):
         # Call super class 
         if context:
             print str(context)
-        super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
-
-        move = self.pool.get('stock.move').browse(cr, uid, ids)
-        if move:
-            #move.prodlot_id.bsm_id = self.pool.get('bsm_data').browse(cr, uid, context['selected_bsm'], context) # get selected value
-            print 'saving bsm id'
-            
+        super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)    
         return True
         
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
         print 'select_bsm_on_change'
-        print 'selected: ' + str(bsm_id)
+
         value = {}
         if bsm_id:
-            bsm_ids = self.pool.get('bsm.data').search(cr, uid, [('id', '=', bsm_id)])
-            print 'selected: ' + str(bsm_ids)
-            value['bsm_id': bsm_ids]
-        return {'value':value}
+            #bsm_ids = self.pool.get('bsm.data').search(cr, uid, [('id', '=', bsm_id)])
+            print 'selected: ' + str(bsm_id)
+            move = self.pool.get('stock.move').browse(cr, uid, ids)
+            if move:
+                #move.prodlot_id.bsm_id = self.pool.get('bsm_data').browse(cr, uid, context['selected_bsm'], context) # get selected value
+                print 'saving bsm id'
+                print 'move prodlot: ' + str(move.prodlot_id)
+                bsm = self.pool.get('bsm_data').browse(cr, uid, bsm_id, context)
+                move.write(cr, uid, {'bsm_id':bsm})
+            #print 'selected: ' + str(bsm_ids)
+            #value['bsm_id': bsm_ids]
+        return True
     
     _columns = {
         'bsm_id': fields.many2one('bsm.data', 'Select BSM')
