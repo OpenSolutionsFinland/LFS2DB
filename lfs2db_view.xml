@@ -11,7 +11,7 @@
     		<field name="arch" type="xml">
         		<field name="quantity" position="after">
 					<field name="imei_code" string="IMEI" />
-				</button>
+				</field>
     		</field>
 		</record>
 	   
