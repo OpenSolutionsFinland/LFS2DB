@@ -33,34 +33,22 @@ prodlot_bsm()
 
 
 class stock_move_split_bsm(osv.osv_memory):
-    _name = 'stock.move.split.line'
-    _inherit = 'stock.move.split.line'
+    _name = 'stock.move.split'
+    _inherit = 'stock.move.split'
 
     _columns = {
-        'bsm_id': fields.related('prodlot_id','bsm_id','bsm_id',type='char', relation="bsm.data", string="IMEI Code")
+        'bsm_id': fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
     }
 
 stock_move_split_bsm()
-
-
-class prodlot_bsm(osv.osv_memory):
-    _name = 'stock.production.lot'
-    _inherit = 'stock.production.lot'
-
-    _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
-    }
-
-prodlot_bsm()
-
 
 class stock_move_bsm(osv.osv_memory):
     _name = 'stock.move'
     _inherit = 'stock.move'
 
     _columns = {
-        'bsm_imei_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data.bsm_imei_code", string="IMEI Code"),
-        'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data.bsm_product_code", string="Product Code")
+        'bsm_id': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM"),
+        #'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data.bsm_product_code", string="Product Code")
     }
 
 stock_move_bsm()
