@@ -15,6 +15,7 @@
     		</field>
 		</record>
 	   -->
+	
 	   <!-- Inherited stock.move form with bsm data -->
 	   <record model="ir.ui.view" id="stock_move_extension">
     		<field name="name">stock.move.form.extension</field>
@@ -43,6 +44,9 @@
 						<div class="oe_inline" style="float: left;">
 							<button name="getSerials" type="object" string="Read Serials" />
 						</div>
+						<div class="oe_inline" style="float: left;">
+							<button name="addBSM" type="object" string="Add BSM line" />
+						</div>
 					</group>
 				</form>
 			</field>
@@ -59,6 +63,32 @@
 			<field name="target">current</field>
 		</record>
 		
+ 	   <record model="ir.ui.view" id="bsm_data_view">
+     		<field name="name">bsm.data.form</field>
+     		<field name="model">bsm.data</field>
+ 			<field name="arch" type="xml">
+                 <form string="Add BSM line" version="7.0">
+ 					<group string="Information" colspan="3">
+ 						<div colspan="2">
+ 							<label for="bsm_imei_code" string="IMEI" />
+ 							<field name="bsm_imei_code"/>
+ 						</div>
+ 						<newline/>
+ 						<div colspan="2">
+ 							<label for="bsm_product_code" string="Product Code" />
+ 							<field name="bsm_product_code"/>
+ 						</div>
+ 						<newline/>
+ 						
+ 					</group>
+					<footer>
+						<button name="save" string="Save" type="object" class="oe_highlight" />
+					    or
+					    <button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+ 				</form>
+ 			</field>
+ 		</record>
 		<menuitem id="bsm_importer_menuitem" name="BSM Importer" parent="stock.menu_traceability" action="action_bsm_import" />
 		 
 	</data>

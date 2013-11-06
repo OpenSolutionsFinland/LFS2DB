@@ -60,8 +60,8 @@ class stock_move_bsm(osv.osv_memory):
     _inherit = 'stock.move'
 
     _columns = {
-        'bsm_imei_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="IMEI Code"),
-        'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="Product Code")
+        'bsm_imei_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data.bsm_imei_code", string="IMEI Code"),
+        'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data.bsm_product_code", string="Product Code")
     }
 
 stock_move_bsm()
@@ -122,6 +122,26 @@ class bsm_importer(osv.osv_memory):
         return True
     
     
+    def addBSM(self, cr, uid, context=None):
+        print 'addBSM'
+        
+        return {
+            'view_id': 'bsm_data_view',
+            'views': 'form',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'res_model': 'bsm.data',
+            #'res_id': prod.move_created_ids2[len(prod.move_created_ids2)-1].id,
+            'view_mode': 'form',
+            'target': 'new',
+            'context': context,
+       }
+
+    #def save(self, cr, uid, context=None):
+    #    print 'save'
+    #    bsm_obj = self.pool.get('bsm.data')
+    #    bsm_obj.create 
+    #    return True
     _columns={
         'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code', selection=_get_selection)
     }
