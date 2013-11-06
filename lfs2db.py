@@ -47,13 +47,12 @@ class stock_move_split_bsm(osv.osv_memory):
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
             print 'saving bsm id ' + str(self.selectedId) + ' to move'
-            move = self.pool.get('stock.move').browse(cr, uid, ids, context)
+            moves = self.pool.get('stock.move').browse(cr, uid, ids, context)
             bsm = self.pool.get('bsm.data').browse(cr, uid, self.selectedId, context)
-            if move and bsm:
+            if moves and bsm:
                 print 'move and bsm found'
-                move.prodlot_id.write(cr, uid, {'bsm_id': bsm})
+                moves[0].prodlot_id.write(cr, uid, {'bsm_id': bsm})
                 print 'done'
-                
         return True
         
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
@@ -77,7 +76,8 @@ class stock_move_split_bsm(osv.osv_memory):
         return True
     
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'Select BSM')
+        'bsm_id': fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
+        #fields.many2one('bsm.data', 'Select BSM')
         #fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
     }
 
