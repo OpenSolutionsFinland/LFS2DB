@@ -10,7 +10,7 @@
     		<field name="inherit_id" ref="stock.split_view_in_lot"/>
     		<field name="arch" type="xml">
         		<field name="quantity" position="after">
-					<field name="imei_code" string="IMEI" />
+					<field name="bsm_id" string="IMEI" />
 				</field>
     		</field>
 		</record>
