@@ -27,6 +27,8 @@ class prodlot_bsm(osv.osv_memory):
 
     _columns = {
         'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
+        'bsm_imei_code': fields.related('bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI"),
+        'bsm_product_code': fields.related('bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product code")
     }
 
 prodlot_bsm()
@@ -88,7 +90,7 @@ class stock_move_bsm(osv.osv_memory):
     _inherit = 'stock.move'
 
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'BSM')#fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM"),
+        'bsm_id': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM"),
         
         #'bsm_product_code': fields.related('prodlot_id','bsm_id',type='char', relation="bsm.data", string="Product Code")
         

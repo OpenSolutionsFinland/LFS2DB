@@ -26,7 +26,7 @@
 					<group string="BSM Information">
 						<div>
 							<label for="bsm_id" string="BSM" />
-							<field name="bsm_id" readonly="True"/>
+							<field name="bsm_id"/>
 						</div>
 					</group>
 				</sheet>
@@ -44,7 +44,17 @@
  						<group string="BSM Information">
  							<div>
  								<label for="bsm_id" string="BSM" />
- 								<field name="bsm_id" readonly="True"/>
+ 								<field name="bsm_id"/>
+ 							</div>
+							<newline/>
+ 							<div>
+ 								<label for="bsm_imei_code" string="IMEI" />
+ 								<field name="bsm_imei_code" readonly="True"/>
+ 							</div>
+							<newline/>
+ 							<div>
+ 								<label for="bsm_product_code" string="Product code" />
+ 								<field name="bsm_product_code" readonly="True"/>
  							</div>
  						</group>
 					</page>
