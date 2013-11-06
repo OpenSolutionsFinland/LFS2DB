@@ -52,10 +52,10 @@ class stock_move_split_bsm(osv.osv_memory):
         
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
         print 'select_bsm_on_change'
-        print 'context: ' + str(context)
+        print 'selected: ' + str(bsm_id)
         value = {}
         if bsm_id:
-            bsm_ids = self.pool.get('bsm.data').search(cr, uid, [('id', '=', 'bsm_id')])
+            bsm_ids = self.pool.get('bsm.data').search(cr, uid, [('id', '=', bsm_id)])
             print 'selected: ' + str(bsm_ids)
             value['bsm_id': bsm_ids]
         return {'value':value}
