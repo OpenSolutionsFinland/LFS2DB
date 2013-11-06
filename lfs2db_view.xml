@@ -22,11 +22,13 @@
     		<field name="model">stock.move</field>
     		<field name="inherit_id" ref="stock.view_move_form"/>
     		<field name="arch" type="xml">
-        		<field name="prodlot_id" position="after">
-					<newline/>
-					<label for="bsm_id" string="BSM" />
-					<field name="bsm_id" readonly="True"/>
-					<newline/>
+        		<field name="purchase_line_id" position="after">
+					<group string="BSM Information">
+						<div>
+							<label for="bsm_id" string="BSM" />
+							<field name="bsm_id" readonly="True"/>
+						</div>
+					</group>
 				</field>
     		</field>
 		</record>
