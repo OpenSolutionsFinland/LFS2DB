@@ -135,21 +135,27 @@ class bsm_importer(osv.osv_memory):
                 if files.endswith(".bsm"):
                     print 'opening file ' + files
                     with open(files, 'rb') as csvfile:
-                        hasHeader = True#csv.Sniffer().has_header(csvfile.read(1024))
-                        #csvfile.seek(0)
+                        hasHeader = True
+                        bsm_obj = self.pool.get('bsm.data')
                         header = []
                         reader = csv.reader(csvfile, delimiter=',')
-                        #if hasHeader:
-                        #    header = reader.next()
-                        #    print 'headers ' + str(header)
-                        
+                        created = 0
                         for row in reader:
                             if reader.line_num == 1 and hasHeader:
                                 print 'header found'
                                 header = row
                             else:
-                                print str(row)
-                            #print ', '.join(row)
+                                # search for existing bsm
+                                existing = bsm_obj.search(cr, uid, args=[('bsm_imei_code', '=', row[0])])
+                                if len(existing) == 0 and len(row) > 1:
+                                    # create a new bsm
+                                    bsm_obj.create(cr, uid, vals={'bsm_imei_code': row[0], 'bsm_product_code': row[1]})
+                                    created += 1
+                                else:
+                                    # update existing
+                                    print 'existist'
+                                    #bsm_obj.write(cr, uid, existing, vals={'bsm_product_code': row[1]})
+                        print 'created ' + str(created) + ' bsm rows'
                         csvfile.close()
                     
             '''       
