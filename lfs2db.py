@@ -137,14 +137,18 @@ class bsm_importer(osv.osv_memory):
                     with open(files, 'rb') as csvfile:
                         hasHeader = True#csv.Sniffer().has_header(csvfile.read(1024))
                         #csvfile.seek(0)
-                        #header = []
+                        header = []
                         reader = csv.reader(csvfile, delimiter=',')
                         #if hasHeader:
                         #    header = reader.next()
                         #    print 'headers ' + str(header)
-                        headerLine = reader.next()
+                        
                         for row in reader:
-                            print str(row)
+                            if reader.line_num == 1 and hasHeader:
+                                print 'header found'
+                                header = row
+                            else:
+                                print str(row)
                             #print ', '.join(row)
                         csvfile.close()
                     
