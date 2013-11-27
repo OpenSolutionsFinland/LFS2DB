@@ -142,10 +142,10 @@ class bsm_importer(osv.osv_memory):
                         #if hasHeader:
                         #    header = reader.next()
                         #    print 'headers ' + str(header)
-                            
+                        headerLine = reader.next()
                         for row in reader:
                             print str(row)
-                            print ', '.join(row)
+                            #print ', '.join(row)
                         csvfile.close()
                     
             '''       
