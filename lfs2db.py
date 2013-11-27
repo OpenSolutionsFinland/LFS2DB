@@ -211,7 +211,7 @@ class bsm_importer(osv.osv_memory):
     }
     
     _defaults={
-        'filepath': '/home/parallels/bsm/',
+        'filepath': '/home/bsm/',
     }
     
 bsm_importer()
