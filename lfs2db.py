@@ -124,7 +124,7 @@ class bsm_importer(osv.osv_memory):
         # Read local file from the file system
         obj = self.pool.get('bsm.importer')
         filepath = obj.browse(cr, uid, ids, context=context)[0].filepath
-        
+        created = 0
         try:
             if filepath == "":
                 os.chdir(self.LOCALFILEPATH)
@@ -139,7 +139,7 @@ class bsm_importer(osv.osv_memory):
                         bsm_obj = self.pool.get('bsm.data')
                         header = []
                         reader = csv.reader(csvfile, delimiter=',')
-                        created = 0
+                        
                         for row in reader:
                             if reader.line_num == 1 and hasHeader:
                                 print 'header found'
@@ -187,7 +187,7 @@ class bsm_importer(osv.osv_memory):
         except:
             print 'lol random error'
         
-        return {}
+        return self.pool.get('warning').info(cr, uid, title='BSM', message="%s BSM rows created "%(str(created)))
     
     
     def addBSM(self, cr, uid, context=None):
