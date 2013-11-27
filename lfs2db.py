@@ -81,7 +81,7 @@ class stock_move_split_bsm(osv.osv_memory):
         return True
     
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'Select BSM', selection=_select_bsm_rows)
+        'bsm_id': fields.many2one('bsm.data', 'Select BSM', selection=_select_bsm_rows, domain="[('bsm_used','=',True)]")
     }
 
 stock_move_split_bsm()
