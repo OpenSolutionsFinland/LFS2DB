@@ -55,7 +55,7 @@ class stock_move_split_bsm(osv.osv_memory):
     def split_lot(self, cr, uid, ids, context=None):
         print 'bsm split_lot'
         # Call super class 
-        res = super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
+        super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
 
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
@@ -67,7 +67,7 @@ class stock_move_split_bsm(osv.osv_memory):
                 print 'saving bsm id ' + str(self.selectedId) + ' to prodlot ' + str(moves[0].prodlot_id.id)
                 prodlot_obj.write(cr, uid, moves[0].prodlot_id.id, {'bsm_id': bsm.id})
                 self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
-        return res
+        return True
     
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
         print 'select_bsm_on_change'
