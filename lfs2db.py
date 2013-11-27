@@ -101,9 +101,11 @@ stock_move_bsm()
 '''
 BSM file importer UI methods and data deserialization
 '''
+import os
+
 class bsm_importer(osv.osv_memory):
 
-    LOCALFILEPATH = '/home/parallels/bsm/bsm.txt'
+    LOCALFILEPATH = '/home/parallels/bsm/'
     
     _name='bsm.importer'
     #_inherit='mrp.product.produce'
@@ -119,8 +121,20 @@ class bsm_importer(osv.osv_memory):
     def getSerials(self, cr, uid, ids, context=None):
         print 'getSerials()'
         # Read local file from the file system
-        '''
+        obj = self.pool.get('bsm.importer')
+        filepath = obj.browse(cr, uid, ids, context=context)[0].filepath
+        
         try:
+            if filepath == "":
+                os.chdir(self.LOCALFILEPATH)
+            else:
+                os.chdir(filepath)
+                
+            for files in os.listdir("."):
+                if files.endswith(".bsm"):
+                    print files
+            
+            '''       
             f = open(self.LOCALFILEPATH, 'r')
             for line in f:
                 if line is not '' and line[0] is not '#':
@@ -144,14 +158,14 @@ class bsm_importer(osv.osv_memory):
                     else:
                         raise ValueError("Line format not recognized")
             f.close()
+            ''' 
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
         except ValueError as fe:
             print fe.strerror
         except:
             print 'lol random error'
-        '''
-        raise osv.except_osv('BSM', 'No files found')
+        
         return True
     
     
@@ -171,7 +185,12 @@ class bsm_importer(osv.osv_memory):
        }
 
     _columns={
-        'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code', selection=_get_selection)
+        'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),#, selection=_get_selection)
+        'filepath': fields.char('BSM Filepath', required=False)
+    }
+    
+    _defaults={
+        'filepath': '/home/parallels/bsm/',
     }
     
 bsm_importer()
