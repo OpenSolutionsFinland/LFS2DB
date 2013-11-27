@@ -41,6 +41,7 @@ class stock_move_split_bsm(osv.osv_memory):
     selectedId = ""
     
     def _select_bsm_rows(self, cr, uid, context=None):
+        print '_select_bsm_rows'
         obj = self.pool.get('bsm.data')
         ids = obj.search(cr, uid, [('bsm_used', '=', False)])
         res = obj.read(cr, uid, ids, ['bsm_imei_code', 'bsm_product_code'], context)
