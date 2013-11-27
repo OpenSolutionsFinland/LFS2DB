@@ -1,0 +1,124 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* bsm_importer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20130822-231054\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-27 11:32+0000\n"
+"PO-Revision-Date: 2013-11-27 13:35+0200\n"
+"Last-Translator: Jesse Vartiainen <jesse@opensolutions.fi>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.7\n"
+
+#. module: bsm_importer
+#: view:bsm.data:0
+msgid "Information"
+msgstr "Tiedot"
+
+#. module: bsm_importer
+#: field:stock.move,bsm_product_code:0
+msgid "Product"
+msgstr "Tuote"
+
+#. module: bsm_importer
+#: view:stock.move:0 view:stock.production.lot:0
+msgid "BSM Information"
+msgstr "BSM Tiedot"
+
+#. module: bsm_importer
+#: field:bsm.importer,imei_selection:0
+msgid "Select IMEI code"
+msgstr "Valitse IMEI koodi"
+
+#. module: bsm_importer
+#: field:bsm.data,bsm_product_code:0
+#: field:stock.production.lot,bsm_product_code:0
+msgid "Product code"
+msgstr "Tuotekoodi"
+
+#. module: bsm_importer
+#: model:ir.model,name:bsm_importer.model_stock_move
+msgid "Stock Move"
+msgstr "Varastosiirto"
+
+#. module: bsm_importer
+#: field:stock.move.split,bsm_id:0
+msgid "Select BSM"
+msgstr "Valitse BSM"
+
+#. module: bsm_importer
+#: field:stock.production.lot,bsm_id:0
+msgid "BSM data"
+msgstr "BSM tiedot"
+
+#. module: bsm_importer
+#: view:bsm.data:0
+msgid "Add BSM line"
+msgstr "Lisää BSM rivi"
+
+#. module: bsm_importer
+#: view:bsm.importer:0
+#: model:ir.ui.menu,name:bsm_importer.bsm_importer_menuitem
+msgid "BSM Importer"
+msgstr "BSM tuonti"
+
+#. module: bsm_importer
+#: view:bsm.importer:0 view:stock.production.lot:0
+msgid "BSM"
+msgstr "BSM"
+
+#. module: bsm_importer
+#: model:ir.model,name:bsm_importer.model_stock_production_lot
+msgid "Serial Number"
+msgstr "Sarjanumero"
+
+#. module: bsm_importer
+#: field:bsm.data,bsm_used:0
+msgid "Used"
+msgstr "Käytetty"
+
+#. module: bsm_importer
+#: model:ir.model,name:bsm_importer.model_bsm_importer
+msgid "bsm.importer"
+msgstr "bsm.importer"
+
+#. module: bsm_importer
+#: model:ir.model,name:bsm_importer.model_stock_move_split
+msgid "Split in Serial Numbers"
+msgstr "Jaa sarjanumero"
+
+#. module: bsm_importer
+#: field:stock.move,bsm_imei_code:0 field:stock.production.lot,bsm_imei_code:0
+msgid "IMEI"
+msgstr "IMEI"
+
+#. module: bsm_importer
+#: field:bsm.data,bsm_imei_code:0
+msgid "IMEI Code"
+msgstr "IMEI koodi"
+
+#. module: bsm_importer
+#: view:bsm.importer:0
+msgid "Read Serials"
+msgstr "Lue sarjanumeroita"
+
+#. module: bsm_importer
+#: model:ir.actions.act_window,name:bsm_importer.action_bsm_import
+msgid "bsm.import.action"
+msgstr "bsm.import.action"
+
+#. module: bsm_importer
+#: field:bsm.data,bsm_date:0
+msgid "Import date"
+msgstr "Tuontipäivämäärä"
+
+#. module: bsm_importer
+#: model:ir.model,name:bsm_importer.model_bsm_data
+msgid "bsm.data"
+msgstr "bsm.data"
