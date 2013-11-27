@@ -151,10 +151,7 @@ class bsm_importer(osv.osv_memory):
                                     # create a new bsm
                                     bsm_obj.create(cr, uid, vals={'bsm_imei_code': row[0], 'bsm_product_code': row[1]})
                                     created += 1
-                                else:
-                                    # update existing
-                                    print 'existist'
-                                    #bsm_obj.write(cr, uid, existing, vals={'bsm_product_code': row[1]})
+
                         print 'created ' + str(created) + ' bsm rows'
                         csvfile.close()
                     
