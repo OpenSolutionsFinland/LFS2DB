@@ -71,7 +71,7 @@
 	    	<field name="model">bsm.importer</field>
 			<field name="arch" type="xml">
 				<form string="BSM Importer" version="7.0" create="false" edit="false">
-					<group string="BSM" columnspan="2">
+					<group string="BSM" colspan="2">
 							<field name="imei_selection" />
 							<button name="getSerials" type="object" string="Read Serials" />
 					</group>
