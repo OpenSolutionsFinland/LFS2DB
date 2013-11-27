@@ -53,7 +53,8 @@ class stock_move_split_bsm(osv.osv_memory):
         # Call super class 
         if context:
             print str(context)
-        res = super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
+        print str(ids)
+        super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
             print 'saving bsm id ' + str(self.selectedId) + ' to move ' + str(ids)
@@ -62,6 +63,7 @@ class stock_move_split_bsm(osv.osv_memory):
             if moves and bsm:
                 print 'move and bsm found'
                 print 'moves: ' + str(len(moves))
+                print str(moves[0].prodlot_id)
                 '''
                 if moves[0].prodlot_id:
                     print 'production lot found'
@@ -71,17 +73,17 @@ class stock_move_split_bsm(osv.osv_memory):
                     print 'saving to move'
                 '''
                 # mark data as used
-                self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
-                
+                print 'set bsm data used'
+                #self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
+                print 'save bsm to move'
                 #print 'writing bsm data to prodlot ' + str(moves[0].prodlot_id.id)
-                self.pool.get('stock.move').write(cr, uid, ids, {'bsm_id':bsm})
+                #self.pool.get('stock.move').write(cr, uid, ids, {'bsm_id':bsm})
                 #prodlot_obj = self.pool.get('stock.production.lot')
                 #prodlot_obj.write(cr, uid, int(moves[0].prodlot_id.id), {'bsm_id': bsm})
                 #self.pool.get('stock.move').write(cr, uid, moves[0].id, {'bsm_id':bsm})
                 #prodlot_obj.write(cr, uid, moves[0].prodlot_id.id, {'bsm_id': bsm})
                 print 'done'
-        print str(res)
-        return res
+        return True
         
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
         print 'select_bsm_on_change'
