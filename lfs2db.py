@@ -102,6 +102,7 @@ stock_move_bsm()
 BSM file importer UI methods and data deserialization
 '''
 import os
+import csv
 
 class bsm_importer(osv.osv_memory):
 
@@ -132,8 +133,11 @@ class bsm_importer(osv.osv_memory):
                 
             for files in os.listdir("."):
                 if files.endswith(".bsm"):
-                    print files
-            
+                    with open(files, 'rb') as csvfile:
+                        spamreader = csv.reader(csvfile, delimiter=',')
+                        for row in spamreader:
+                            print ', '.join(row)
+                    
             '''       
             f = open(self.LOCALFILEPATH, 'r')
             for line in f:
