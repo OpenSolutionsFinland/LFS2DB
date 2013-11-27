@@ -144,6 +144,7 @@ class bsm_importer(osv.osv_memory):
                         #    print 'headers ' + str(header)
                             
                         for row in reader:
+                            print str(row)
                             print ', '.join(row)
                         csvfile.close()
                     
