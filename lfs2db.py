@@ -60,7 +60,7 @@ class stock_move_split_bsm(osv.osv_memory):
 
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
-            moves = self.pool.get('stock.move').browse(cr, uid, ids, context)
+            moves = self.pool.get('stock.move').browse(cr, uid, context['active_id'], context)
             bsm = self.pool.get('bsm.data').browse(cr, uid, self.selectedId, context)
             print str(moves)
             if moves and bsm:
