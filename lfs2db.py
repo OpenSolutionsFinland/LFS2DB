@@ -54,6 +54,7 @@ class stock_move_split_bsm(osv.osv_memory):
     
     def split_lot(self, cr, uid, ids, context=None):
         print 'bsm split_lot'
+        print str(context)
         # Call super class 
         super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
 
