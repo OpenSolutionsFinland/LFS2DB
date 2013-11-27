@@ -73,14 +73,14 @@
 				<form string="BSM Importer" version="7.0" create="false" edit="false">
 					<group string="BSM" colspan="2">
 							<field name="imei_selection" colspan="2"/>
-							<button name="getSerials" type="object" string="Read Serials" />
+							<button name="getSerials" type="object" string="Read Serials" class="oe_highlight"/>
 					</group>
 				</form>
 			</field>
 		</record>
 
 		<record model="ir.actions.act_window" id="action_bsm_import">
-			<field name="name">bsm.import.action</field>
+			<field name="name">BSM Importer</field>
 			<field name="view_id" ref="view_bsm_importer"/>
 			<field name="domain"></field>
 			<field name="res_model">bsm.importer</field>
