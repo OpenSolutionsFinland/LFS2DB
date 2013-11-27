@@ -103,7 +103,8 @@
      		<field name="model">bsm.data</field>
  			<field name="arch" type="xml">
                  <form string="Add BSM line" version="7.0">
- 					<group string="Information" colspan="3">
+ 					<group string="Information">
+						<!-- 
  						<div colspan="2">
  							<label for="bsm_imei_code" string="IMEI" />
  							<field name="bsm_imei_code"/>
@@ -114,6 +115,9 @@
  							<field name="bsm_product_code"/>
  						</div>
  						<newline/>
+						-->
+						<field name="bsm_imei_code"/>
+						<field name="bsm_product_code"/>
  					</group>
  				</form>
  			</field>
