@@ -70,7 +70,8 @@ class stock_move_split_bsm(osv.osv_memory):
                 else:
                     print 'saving to move'
                 '''
-                
+                # mark data as used
+                self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
                 moves[0].write(cr, uid, {'bsm_id':bsm})
                 print 'done'
         return True
@@ -82,7 +83,7 @@ class stock_move_split_bsm(osv.osv_memory):
         if bsm_id:
             #bsm_ids = self.pool.get('bsm.data').search(cr, uid, [('id', '=', bsm_id)])
             print 'context: ' + str(context)
-            print 'selected: ' + str(bsm_id) + ' move id: ' + str(ids)
+            print 'selected: ' + str(bsm_id)
             self.selectedId = bsm_id
             #move = self.pool.get('stock.move').browse(cr, uid, ids)
             #if move:
