@@ -74,7 +74,7 @@ class stock_move_split_bsm(osv.osv_memory):
                 self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
                 
                 #print 'writing bsm data to prodlot ' + str(moves[0].prodlot_id.id)
-                self.pool.get('stock.move').write(cr, uid, int(moves[0].id), {'bsm_id':bsm})
+                self.pool.get('stock.move').write(cr, uid, ids, {'bsm_id':bsm})
                 #prodlot_obj = self.pool.get('stock.production.lot')
                 #prodlot_obj.write(cr, uid, int(moves[0].prodlot_id.id), {'bsm_id': bsm})
                 #self.pool.get('stock.move').write(cr, uid, moves[0].id, {'bsm_id':bsm})
