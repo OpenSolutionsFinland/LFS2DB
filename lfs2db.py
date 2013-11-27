@@ -47,7 +47,7 @@ class stock_move_split_bsm(osv.osv_memory):
         print 'found unused bsm numbers: ' + str(ids)
         res = obj.read(cr, uid, ids, ['id', 'bsm_imei_code', 'bsm_product_code'], context)
         print str(res)
-        res = [(r['bsm_imei_code'], r['bsm_product_code'], r['id']) for r in res]
+        res = [(r['id'], r['bsm_imei_code']) for r in res]
         print str(res)
         return res
     
