@@ -116,7 +116,7 @@ class bsm_importer(osv.osv_memory):
         res = [(r['bsm_product_code'], r['bsm_imei_code']) for r in res]
         return res
     
-    def getSerials(self, cr, uid, context=None):
+    def getSerials(self, cr, uid, ids, context=None):
         print 'getSerials()'
         # Read local file from the file system
         '''
@@ -151,6 +151,7 @@ class bsm_importer(osv.osv_memory):
         except:
             print 'lol random error'
         '''
+        raise osv.except_osv('BSM', 'No files found')
         return True
     
     
