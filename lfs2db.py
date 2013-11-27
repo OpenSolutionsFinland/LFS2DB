@@ -43,7 +43,8 @@ class stock_move_split_bsm(osv.osv_memory):
     def _select_bsm_rows(self, cr, uid, context=None):
         print '_select_bsm_rows'
         obj = self.pool.get('bsm.data')
-        ids = obj.search(cr, uid, args=[('bsm_used', '=', False)])
+        ids = obj.search(cr, uid, [])
+        #args=[('bsm_used', '=', False)
         print 'found unused bsm numbers: ' + str(ids)
         res = obj.read(cr, uid, ids, ['id', 'bsm_imei_code', 'bsm_product_code'], context)
         print str(res)
@@ -81,7 +82,7 @@ class stock_move_split_bsm(osv.osv_memory):
         return True
     
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'Select BSM', selection=_select_bsm_rows, domain="[('bsm_used','=',True)]")
+        'bsm_id': fields.many2one('bsm.data', 'Select BSM', selection=_select_bsm_rows, domain="[('bsm_used','=','False')]")
     }
 
 stock_move_split_bsm()
