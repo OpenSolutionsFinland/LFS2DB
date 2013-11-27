@@ -137,6 +137,7 @@ class bsm_importer(osv.osv_memory):
                         spamreader = csv.reader(csvfile, delimiter=',')
                         for row in spamreader:
                             print ', '.join(row)
+                        csvfile.close()
                     
             '''       
             f = open(self.LOCALFILEPATH, 'r')
