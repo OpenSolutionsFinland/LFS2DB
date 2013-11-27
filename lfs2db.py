@@ -133,6 +133,7 @@ class bsm_importer(osv.osv_memory):
                 
             for files in os.listdir("."):
                 if files.endswith(".bsm"):
+                    print 'opening file ' + files
                     with open(files, 'rb') as csvfile:
                         spamreader = csv.reader(csvfile, delimiter=',')
                         for row in spamreader:
