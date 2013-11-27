@@ -72,7 +72,7 @@
 			<field name="arch" type="xml">
 				<form string="BSM Importer" version="7.0" create="false" edit="false">
 					<group string="BSM" colspan="2">
-							<field name="imei_selection" />
+							<field name="imei_selection" colspan="2"/>
 							<button name="getSerials" type="object" string="Read Serials" />
 					</group>
 				</form>
