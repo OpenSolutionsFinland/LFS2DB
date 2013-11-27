@@ -55,19 +55,17 @@ class stock_move_split_bsm(osv.osv_memory):
     def split_lot(self, cr, uid, ids, context=None):
         print 'bsm split_lot'
         # Call super class 
-        if context:
-            print str(context)
-        print str(ids)
         res = super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
 
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
-            print 'saving bsm id ' + str(self.selectedId) + ' to move ' + str(ids)
             moves = self.pool.get('stock.move').browse(cr, uid, ids, context)
+            split = self.pool.get('stock.move.split').browse(cr, uid, ids, context)
             bsm = self.pool.get('bsm.data').browse(cr, uid, self.selectedId, context)
-            if hasattr(moves[0], 'prodlot_id') and bsm:
+            if split and bsm:
                 prodlot_obj = self.pool.get('stock.production.lot')
-                prodlot_obj.write(cr, uid, moves[0].prodlot_id.id, {'bsm_id': bsm.id})
+                print 'saving bsm id ' + str(self.selectedId) + ' to prodlot ' + str(moves[0].prodlot_id.id)
+                prodlot_obj.write(cr, uid, split[0].line_ids[0].prodlot_id.id, {'bsm_id': bsm.id})
                 self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
         return res
     
