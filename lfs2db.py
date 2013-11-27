@@ -190,7 +190,7 @@ class bsm_importer(osv.osv_memory):
         except:
             print 'lol random error'
         
-        return True
+        return {}
     
     
     def addBSM(self, cr, uid, context=None):
