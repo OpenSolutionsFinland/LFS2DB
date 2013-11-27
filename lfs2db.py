@@ -139,9 +139,9 @@ class bsm_importer(osv.osv_memory):
                         #csvfile.seek(0)
                         #header = []
                         reader = csv.reader(csvfile, delimiter=',')
-                        if hasHeader:
-                            header = reader.next()
-                            print 'headers ' + str(header)
+                        #if hasHeader:
+                        #    header = reader.next()
+                        #    print 'headers ' + str(header)
                             
                         for row in reader:
                             print ', '.join(row)
