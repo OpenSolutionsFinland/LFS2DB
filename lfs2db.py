@@ -40,6 +40,13 @@ class stock_move_split_bsm(osv.osv_memory):
     
     selectedId = ""
     
+    def _select_bsm_rows(self, cr, uid, context=None):
+        obj = self.pool.get('bsm.data')
+        ids = obj.search(cr, uid, [('bsm_used', '=', False)])
+        res = obj.read(cr, uid, ids, ['bsm_imei_code', 'bsm_product_code'], context)
+        res = [(r['bsm_imei_code'], r['bsm_product_code']) for r in res]
+        return res
+    
     def split_lot(self, cr, uid, ids, context=None):
         print 'bsm split_lot'
         # Call super class 
@@ -54,13 +61,16 @@ class stock_move_split_bsm(osv.osv_memory):
             if moves and bsm:
                 print 'move and bsm found'
                 print 'moves: ' + str(len(moves))
+                '''
                 if moves[0].prodlot_id:
                     print 'production lot found'
                     prodlot_obj = self.pool.get('stock.production.lot')
                     prodlot_obj.write(cr, uid, moves[0].prodlot_id.id, {'bsm_id': bsm})
                 else:
                     print 'saving to move'
-                    moves[0].write(cr, uid, {'bsm_id':bsm})
+                '''
+                
+                moves[0].write(cr, uid, {'bsm_id':bsm})
                 print 'done'
         return True
         
@@ -85,7 +95,7 @@ class stock_move_split_bsm(osv.osv_memory):
         return True
     
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'Select BSM')#fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
+        'bsm_id': fields.many2one('bsm.data', 'Select BSM', _select_bsm_rows)#fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
         #
         #fields.related('line_ids','prodlot_id','bsm_id',type='char', relation="bsm.data", string="BSM")
     }
