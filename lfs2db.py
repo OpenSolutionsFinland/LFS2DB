@@ -87,7 +87,8 @@ class stock_move_bsm(osv.osv_memory):
     _inherit = 'stock.move'
 
     _columns = {
-        'bsm_id': fields.related('prodlot_id','bsm_id', 'bsm_imei_code', type='char', relation="bsm.data", string="BSM")
+        'bsm_imei_code': fields.related('prodlot_id','bsm_id', 'bsm_imei_code', type='char', relation="bsm.data", string="IMEI")
+        'bsm_product_code': fields.related('prodlot_id','bsm_id', 'bsm_product_code', type='char', relation="bsm.data", string="Product")
     }
 
 stock_move_bsm()

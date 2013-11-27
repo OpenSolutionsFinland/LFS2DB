@@ -24,7 +24,8 @@
     		<field name="arch" type="xml">
         		<sheet position="inside">
 					<group string="BSM Information">
-						<field name="bsm_id"/>
+						<field name="bsm_imei_code"/>
+						<field name="bsm_product_code"/>
 					</group>
 				</sheet>
     		</field>
