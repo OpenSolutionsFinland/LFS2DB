@@ -41,15 +41,16 @@ class stock_move_split_bsm(osv.osv_memory):
     selectedId = ""
     
     def _select_bsm_rows(self, cr, uid, context=None):
-        print '_select_bsm_rows'
+        print '_get_selection'
         obj = self.pool.get('bsm.data')
-        ids = obj.search(cr, uid, [])
-        #args=[('bsm_used', '=', False)
-        print 'found unused bsm numbers: ' + str(ids)
-        res = obj.read(cr, uid, ids, ['id', 'bsm_imei_code', 'bsm_product_code'], context)
-        print str(res)
-        res = [(r['id'], r['bsm_imei_code']) for r in res]
-        print str(res)
+        
+        unused = obj.search(cr, uid, args=[('bsm_used', '=', False)], context=context)
+        
+        data = obj.read(cr, uid, unused,['id', 'bsm_imei_code', 'bsm_product_code'], context=context)
+        res = ()
+        if len(data) > 0:
+            # return list of tuples
+            res = [(r['id'], r['bsm_imei_code']+','+r['bsm_product_code']) for r in data]
         return res
     
     def split_lot(self, cr, uid, ids, context=None):
@@ -72,17 +73,15 @@ class stock_move_split_bsm(osv.osv_memory):
     
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
         print 'select_bsm_on_change'
-
+        print str(bsm_id)
         value = {}
         if bsm_id:
-            #bsm_ids = self.pool.get('bsm.data').search(cr, uid, [('id', '=', bsm_id)])
-            print 'context: ' + str(context)
-            print 'selected: ' + str(bsm_id)
-            self.selectedId = bsm_id
+            print 'selected: ' + str(bsm_id['id'])
+            self.selectedId = bsm_id['id']
         return True
     
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'Select BSM', selection=_select_bsm_rows) #, domain="[('bsm_used','=','False')]"
+        'bsm_id': fields.selection(_select_bsm_rows, 'Select BSM') #, domain="[('bsm_used','=','False')]"
     }
 
 stock_move_split_bsm()
@@ -224,7 +223,7 @@ class bsm_importer(osv.osv_memory):
         
     _columns={
         'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),#, selection=_get_selection)
-        'imeis_name': fields.selection(_get_selection,'IMEI selection'), 
+        'imeis_name': fields.selection(_get_selection,'Unused IMEI codes'), 
         'filepath': fields.char('BSM Filepath', required=False)
     }
     
