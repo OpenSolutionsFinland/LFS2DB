@@ -72,12 +72,10 @@ class stock_move_split_bsm(osv.osv_memory):
         return True
     
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
-        print 'select_bsm_on_change'
-        print str(bsm_id)
+        print 'select_bsm_on_change ' + str(bsm_id)
         value = {}
         if bsm_id:
-            print 'selected: ' + str(bsm_id['id'])
-            self.selectedId = bsm_id['id']
+            self.selectedId = bsm_id
         return True
     
     _columns = {
