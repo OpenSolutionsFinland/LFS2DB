@@ -224,17 +224,7 @@ class bsm_importer(osv.osv_memory):
         
     _columns={
         'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),#, selection=_get_selection)
-        '''
-        'imeis': fields.function(_get_bsm_data,
-            type='many2one',
-            obj="bsm.data",
-            method=True,
-            string='BSMs'),
-        '''
-        'imeis_name': fields.selection(
-            _get_selection,
-            'What do you want ?'),
-            
+        'imeis_name': fields.selection(_get_selection,'IMEI selection'), 
         'filepath': fields.char('BSM Filepath', required=False)
     }
     
