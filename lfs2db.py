@@ -205,8 +205,36 @@ class bsm_importer(osv.osv_memory):
             'context': context,
        }
 
+    def _get_bsm_data(self, cr, uid, name, ids, context=None):
+        print 'get bsm data'
+        obj = self.pool.get('bsm.data')
+        
+    def _get_selection(self, cr, uid, context=None):
+        print '_get_selection'
+        obj = self.pool.get('bsm.data')
+        
+        unused = obj.search(cr, uid, args=[('bsm_used', '=', False)], context=context)
+        
+        data = obj.read(cr, uid, unused,['id', 'bsm_imei_code', 'bsm_product_code'], context=context)
+        res = ()
+        if len(data) > 0:
+            # return list of tuples
+            res = [(r['id'], r['bsm_imei_code']+','+r['bsm_product_code']) for r in data]
+        return res
+        
     _columns={
         'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),#, selection=_get_selection)
+        '''
+        'imeis': fields.function(_get_bsm_data,
+            type='many2one',
+            obj="bsm.data",
+            method=True,
+            string='BSMs'),
+        '''
+        'imeis_name': fields.selection(
+            _get_selection,
+            'What do you want ?'),
+            
         'filepath': fields.char('BSM Filepath', required=False)
     }
     

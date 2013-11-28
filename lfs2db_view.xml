@@ -73,6 +73,7 @@
 				<form string="BSM Importer" version="7.0" create="false" edit="false">
 					<group string="BSM" colspan="2">
 							<field name="imei_selection" colspan="2"/>
+							<field name="imeis_name" colspan="2" />
 							<field name="filepath" />
 							<button name="getSerials" type="object" string="Read Serials" class="oe_highlight"/>
 					</group>
