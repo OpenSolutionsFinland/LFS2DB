@@ -196,7 +196,7 @@ class bsm_importer(osv.osv_memory):
                                     bsm_obj.create(cr, uid, vals, context=context)
                                     created += 1
                                 else:
-                                    print 'updating bsm for imei: ' + row[0]
+                                    print 'updating bsm for imei: ' + row[3]
                                     vals['bsm_used'] = False
                                     bsm_obj.write(cr, uid, existing, vals, context=context)
                                     
