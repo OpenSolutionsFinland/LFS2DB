@@ -84,8 +84,16 @@
  			<field name="arch" type="xml">
                  <form string="Add BSM line" version="7.0">
  					<group string="Information">
-						<field name="bsm_imei_code"/>
-						<field name="bsm_product_code"/>
+						<field name="name"/>
+					    <field name="bsm_imei_code"/>
+					    <field name="bsm_product_code" />
+						<field name="bsm_delivery_number" />
+						<field name="bsm_gsm_version" />
+					    <field name="bsm_fw_version" />
+					    <field name="bsm_gps_version" />
+						<field name="bsm_hw_version" />     
+						<field name="bsm_warranty_time" />
+						<field name="bsm_used" />  
  					</group>
  				</form>
  			</field>
