@@ -91,7 +91,7 @@
 		
 		<record model="ir.ui.view" id="view_bsm_data_tree">
 	    	<field name="name">bsm.data.view</field>
-	    	<field name="model">bsm_data</field>
+	    	<field name="model">bsm.data</field>
 			<field name="arch" type="xml">
 				<tree string="BSM Data" >
 					<field name="name"/>
