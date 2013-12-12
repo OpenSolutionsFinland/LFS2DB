@@ -104,7 +104,8 @@
 				    <field name="bsm_fw_version" />
 				    <field name="bsm_gps_version" />
 					<field name="bsm_hw_version" />     
-					<field name="bsm_warranty_time" />      
+					<field name="bsm_warranty_time" />
+					<field name="bsm_used" />  
 				 </tree>
 			</field>
 		</record>
