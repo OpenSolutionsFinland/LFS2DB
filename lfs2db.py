@@ -206,7 +206,7 @@ class bsm_importer(osv.osv_memory):
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
         except ValueError as fe:
-            print fe.strerror
+            print fe
         except:
             print 'lol random error'
         
