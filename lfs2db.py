@@ -29,7 +29,7 @@ class bsm_data(osv.osv_memory):
         'bsm_gps_version': fields.char('GPS Version'),
         'bsm_hw_version': fields.char('HW Version'),
         'bsm_warranty_time': fields.float('Warranty'),
-        'bsm_warranty_code': fields.float('Warranty Code'),
+        'bsm_warranty_code': fields.char('Warranty Code'),
         #'bsm_date': fields.datetime('Import date'),
         
         'bsm_used': fields.boolean('Used'),
