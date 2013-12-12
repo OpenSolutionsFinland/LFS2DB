@@ -124,8 +124,8 @@
 			<field name="arch" type="xml">
 				<search string="BSM Data">
 					<field name="bsm_used" string="Unused data"/>
-					<filter icon="terp-go-home" name="bsm_unused" string="Unused" domain="[('bsm_used', '=', 'true')]"/>
-					<filter icon="terp-go-home" name="bsm_used" string="Used" domain="[('bsm_used', '=', 'false')]"/>
+					<filter icon="terp-go-home" name="bsm_unused" string="Unused" domain="[('bsm_used', '=', False)]"/>
+					<filter icon="terp-go-home" name="bsm_used" string="Used" domain="[('bsm_used', '=', True)]"/>
 				</search>
 			</field>
 		</record>
