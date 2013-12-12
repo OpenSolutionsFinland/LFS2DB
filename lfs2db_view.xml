@@ -74,7 +74,6 @@
 			<field name="res_model">bsm.importer</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">form</field>
-
 			<field name="target">new</field>
 		</record>
 		
@@ -113,7 +112,7 @@
 				    <field name="bsm_gps_version" />
 					<field name="bsm_hw_version" />     
 					<field name="bsm_warranty_time" />
-					<field name="bsm_used" />  
+					<field name="bsm_used" />
 				 </tree>
 			</field>
 		</record>

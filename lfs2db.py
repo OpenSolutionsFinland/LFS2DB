@@ -29,6 +29,7 @@ class bsm_data(osv.osv_memory):
         'bsm_gps_version': fields.char('GPS Version'),
         'bsm_hw_version': fields.char('HW Version'),
         'bsm_warranty_time': fields.float('Warranty'),
+        'bsm_warranty_code': fields.float('Warranty Code'),
         #'bsm_date': fields.datetime('Import date'),
         
         'bsm_used': fields.boolean('Used'),
@@ -184,7 +185,7 @@ class bsm_importer(osv.osv_memory):
                                     'bsm_fw_version': row[5],
                                     'bsm_gps_version': row[6],
                                     'bsm_hw_version': row[7],
-                                    'bsm_warranty_time': float(row[0][1:]),
+                                    'bsm_warranty_time': float(row[8][1:]),
                                 }
                                 
                                 existing = bsm_obj.search(cr, uid, args=[('name', '=', row[2])])
