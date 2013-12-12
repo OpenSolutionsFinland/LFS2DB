@@ -173,7 +173,7 @@ class bsm_importer(osv.osv_memory):
                             if reader.line_num == 1 and hasHeader:
                                 print 'header found'
                                 header = row
-                            else if len(row) >= 9:
+                            elif len(row) >= 9:
                                 # search for existing bsm
                                 vals = {
                                     'bsm_delivery_number': row[0],
