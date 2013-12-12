@@ -7,11 +7,32 @@ Class for holding the data
 class bsm_data(osv.osv_memory):
     _name = 'bsm.data'
     
+    '''
+    *124169*=Toimitusnumero
+    *TCP90EU*=Tyyppitieto
+    *102N32T0017297*=sarjanumero
+    *351535052976123*=IMEI
+    *BGS2-W 01.3010*=GSM versio
+    *CT1P.01.013.0000*=FW versio
+    *XTrac2.3.0BF*= GPS versio
+    *32,1,A,1,1,T0* =HW versio
+    *T2* =takuuaika
+    
+    '''
     _columns={
-        'bsm_imei_code': fields.char('IMEI Code', size=15),
+        'bsm_delivery_number': fields.char('Delivery number', size=64),
         'bsm_product_code': fields.char('Product code', size=64),
-        'bsm_date': fields.datetime('Import date'),
-        'bsm_used': fields.boolean('Used')
+        'name': fields.char('BSM Serial'),
+        'bsm_imei_code': fields.char('IMEI Code', size=15),
+        'bsm_gsm_version': fields.char('GSM Version'),
+        'bsm_fw_version': fields.char('FW Version'),
+        'bsm_gps_version': fields.char('GPS Version'),
+        'bsm_hw_version': fields.char('HW Version'),
+        'bsm_warranty_time': fields.float('Warranty'),
+        #'bsm_date': fields.datetime('Import date'),
+        
+        'bsm_used': fields.boolean('Used'),
+        
         # TODO needs a relative field pointing to lot serials?
     }
     
@@ -135,20 +156,48 @@ class bsm_importer(osv.osv_memory):
                         hasHeader = True
                         bsm_obj = self.pool.get('bsm.data')
                         header = []
-                        reader = csv.reader(csvfile, delimiter=',')
-                        
+                        reader = csv.reader(csvfile, delimiter=',', quotechar='*')
+                        '''
+                        *124169*=Toimitusnumero
+                        *TCP90EU*=Tyyppitieto
+                        *102N32T0017297*=sarjanumero
+                        *351535052976123*=IMEI
+                        *BGS2-W 01.3010*=GSM versio
+                        *CT1P.01.013.0000*=FW versio
+                        *XTrac2.3.0BF*= GPS versio
+                        *32,1,A,1,1,T0* =HW versio
+                        *T2* =takuuaika
+    
+                        '''
                         for row in reader:
                             if reader.line_num == 1 and hasHeader:
                                 print 'header found'
                                 header = row
-                            else:
+                            else if len(row) >= 9:
                                 # search for existing bsm
-                                existing = bsm_obj.search(cr, uid, args=[('bsm_imei_code', '=', row[0])])
-                                if len(existing) == 0 and len(row) > 1:
+                                vals = {
+                                    'bsm_delivery_number': row[0],
+                                    'bsm_product_code': row[1],
+                                    'name': row[2],
+                                    'bsm_imei_code': row[3],
+                                    'bsm_gsm_version': row[4],
+                                    'bsm_fw_version': row[5],
+                                    'bsm_gps_version': row[6],
+                                    'bsm_hw_version': row[7],
+                                    'bsm_warranty_time': float(row[0][1:]),
+                                }
+                                
+                                existing = bsm_obj.search(cr, uid, args=[('name', '=', row[2])])
+                                if len(existing) == 0:
                                     # create a new bsm
-                                    bsm_obj.create(cr, uid, vals={'bsm_imei_code': row[0], 'bsm_product_code': row[1]})
+                                    
+                                    bsm_obj.create(cr, uid, vals, context=context)
                                     created += 1
-
+                                else:
+                                    print 'updating bsm for imei: ' + row[0]
+                                    vals['bsm_used'] = False
+                                    bsm_obj.write(cr, uid, existing, vals, context=context)
+                                    
                         print 'created ' + str(created) + ' bsm rows'
                         csvfile.close()
                     
