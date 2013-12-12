@@ -186,6 +186,7 @@ class bsm_importer(osv.osv_memory):
                                     'bsm_gps_version': row[6],
                                     'bsm_hw_version': row[7],
                                     'bsm_warranty_time': float(row[8][1:]),
+                                    'bsm_warranty_code': row[8],
                                 }
                                 
                                 existing = bsm_obj.search(cr, uid, args=[('name', '=', row[2])])
