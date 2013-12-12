@@ -201,31 +201,6 @@ class bsm_importer(osv.osv_memory):
                         print 'created ' + str(created) + ' bsm rows'
                         csvfile.close()
                     
-            '''       
-            f = open(self.LOCALFILEPATH, 'r')
-            for line in f:
-                if line is not '' and line[0] is not '#':
-                    params = line.split(';')
-                    if len(params) == 3:
-                        # read date
-                        vals = {
-                            'bsm_date': dt.strptime(params[0], "%d-%m-%Y %H:%M.%S")
-                            'bsm_imei_code': params[1]
-                            'bsm_product_code': params[2]
-                        }
-                        
-                        # create object
-                        bsm_obj = self.pool.get('bsm.data')
-                        existing = bsm_obj.search(cr, uid, [('bsm_imei_code','=',vals['bsm_imei_code'])], context=context)
-                        if len(existing) == 0:
-                            print 'Creating BSM serial'
-                            new_device = bsm_obj.create(cr, uid, vals, context=context)
-                        else:
-                            print 'IMEI code exists already'
-                    else:
-                        raise ValueError("Line format not recognized")
-            f.close()
-            ''' 
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
         except ValueError as fe:
