@@ -237,7 +237,7 @@ class bsm_importer(osv.osv_memory):
                         csvfile.close()
                         # rename file to mark it read
                         print 'renaming ' + filepath+files + ' to ' + filepath+files+'_r' 
-                        os.rename(filepath+files, filepath+files+'_r')
+                        os.rename(filepath+files, filepath+files+'r')
                         
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
