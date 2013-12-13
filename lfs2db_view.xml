@@ -3,7 +3,7 @@
    <data>
 	   
 	   <!-- Inherited split lot form with IMEI code selection -->
-	   
+	   <!--  
 	   <record model="ir.ui.view" id="split_lot_extension">
     		<field name="name">stock.move.split.form.extension</field>
     		<field name="model">stock.move.split</field>
@@ -11,11 +11,11 @@
     		<field name="arch" type="xml">
         		<field name="use_exist" position="after">
 					<field name="bsm_ids" />
-					<!--  <field name="bsm_id" on_change="selected_bsm_on_change(bsm_id)"/> -->
+					<field name="bsm_id" on_change="selected_bsm_on_change(bsm_id)"/> 
 				</field>
     		</field>
 		</record>
-	   
+	   -->
 	
 	   <!-- Inherited stock.move form with bsm data -->
 	   <record model="ir.ui.view" id="stock_move_extension">

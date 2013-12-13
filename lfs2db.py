@@ -93,6 +93,7 @@ class stock_move_split_bsm(osv.osv_memory):
         print str(context)
         # Call super class 
         super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
+        moves = self.pool.get('stock.move').browse(cr, uid, context['active_id'], context)
         '''
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
@@ -117,7 +118,7 @@ class stock_move_split_bsm(osv.osv_memory):
     _columns = {
         'bsm_id': fields.selection(_select_bsm_rows, 'Select BSM'), #, domain="[('bsm_used','=','False')]"
         'bsm_ids': fields.related('line_ids','prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials")
-        #fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
+        fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
         
     }
 
@@ -131,6 +132,7 @@ class stock_move_bsm(osv.osv_memory):
         'bsm_imei_code': fields.related('prodlot_id','bsm_id', 'bsm_imei_code', type='char', relation="bsm.data", string="IMEI", readonly=True),
         'bsm_product_code': fields.related('prodlot_id','bsm_id', 'bsm_product_code', type='char', relation="bsm.data", string="Product", readonly=True),
         'bsm_ids': fields.related('prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials")
+        #'bsm_ids': fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
     }
 
 stock_move_bsm()
