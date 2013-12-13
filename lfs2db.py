@@ -239,7 +239,7 @@ class bsm_importer(osv.osv_memory):
                         print 'renaming ' + filepath+files + ' to ' + filepath+files+'r'
                         os.chmod(filepath+files, 777)
                         os.rename(filepath+files, filepath+files+'r')
-                        os.chmod(filepath+files+'r', 666)
+                        os.chmod(filepath+files+'r', 644)
 
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
