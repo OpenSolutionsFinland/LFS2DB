@@ -63,6 +63,7 @@ class prodlot_bsm(osv.osv_memory):
         'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
         'bsm_imei_code': fields.related('bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI"),
         'bsm_product_code': fields.related('bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product code"),
+        'bsm_ids': fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
     }
 
 prodlot_bsm()
@@ -114,7 +115,9 @@ class stock_move_split_bsm(osv.osv_memory):
     
     _columns = {
         'bsm_id': fields.selection(_select_bsm_rows, 'Select BSM'), #, domain="[('bsm_used','=','False')]"
-        'bsm_ids': fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
+        'bsm_ids': fields.related('prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials")
+        #fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
+        
     }
 
 stock_move_split_bsm()
@@ -125,7 +128,8 @@ class stock_move_bsm(osv.osv_memory):
 
     _columns = {
         'bsm_imei_code': fields.related('prodlot_id','bsm_id', 'bsm_imei_code', type='char', relation="bsm.data", string="IMEI", readonly=True),
-        'bsm_product_code': fields.related('prodlot_id','bsm_id', 'bsm_product_code', type='char', relation="bsm.data", string="Product", readonly=True)
+        'bsm_product_code': fields.related('prodlot_id','bsm_id', 'bsm_product_code', type='char', relation="bsm.data", string="Product", readonly=True),
+        'bsm_ids': fields.related('prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials")
     }
 
 stock_move_bsm()
