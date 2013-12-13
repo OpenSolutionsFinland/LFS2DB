@@ -43,6 +43,18 @@ class bsm_data(osv.osv_memory):
     
 bsm_data()
 
+'''
+class bsm_data_relation(osv.osv_memory):
+    _name= 'bsm.data.relation'
+    
+    columns={
+        'bsm_data_id': fields.integer('BSM ID'),
+        'prodlot_id': fields.integer('Prodlot ID')
+    }
+    
+bsm_data_relation()
+'''
+
 class prodlot_bsm(osv.osv_memory):
     _name = 'stock.production.lot'
     _inherit = 'stock.production.lot'
@@ -50,7 +62,8 @@ class prodlot_bsm(osv.osv_memory):
     _columns = {
         'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
         'bsm_imei_code': fields.related('bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI"),
-        'bsm_product_code': fields.related('bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product code")
+        'bsm_product_code': fields.related('bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product code"),
+        'bsm_ids': fields.many2many('bsm.data', 'bsm.data.rel', 'bsm_id', 'prodlot_id', 'BSM serials')
     }
 
 prodlot_bsm()
