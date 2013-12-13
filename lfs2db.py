@@ -237,9 +237,9 @@ class bsm_importer(osv.osv_memory):
                         csvfile.close()
                         # rename file to mark it read
                         print 'renaming ' + filepath+files + ' to ' + filepath+files+'r'
-                        os.chmod(filepath+files, 777)
+                        #os.chmod(filepath+files, 555)
                         os.rename(filepath+files, filepath+files+'r')
-                        os.chmod(filepath+files+'r', 644)
+                        #os.chmod(filepath+files+'r', 644)
 
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
@@ -290,7 +290,7 @@ class bsm_importer(osv.osv_memory):
     }
     
     _defaults={
-        'filepath': '/home/bsm/',
+        'filepath': '/home/bsm/bsmdata/',
     }
     
 bsm_importer()
