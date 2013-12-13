@@ -117,8 +117,8 @@ class stock_move_split_bsm(osv.osv_memory):
     
     _columns = {
         'bsm_id': fields.selection(_select_bsm_rows, 'Select BSM'), #, domain="[('bsm_used','=','False')]"
-        'bsm_ids': fields.related('line_ids','prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials")
-        fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
+        'bsm_ids': fields.related('line_ids','prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials"),
+        #fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
         
     }
 
