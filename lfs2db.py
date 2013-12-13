@@ -243,8 +243,8 @@ class bsm_importer(osv.osv_memory):
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
         except ValueError as fe:
             print fe
-        except:
-            print 'lol random error'
+        except Exception as e:
+            print e
         
         return self.pool.get('warning').info(cr, uid, title='BSM', message="%s BSM rows created, %s BSM rows updated"%(str(created), str(updated)))
     
