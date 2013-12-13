@@ -175,6 +175,7 @@ class bsm_importer(osv.osv_memory):
         obj = self.pool.get('bsm.importer')
         filepath = obj.browse(cr, uid, ids, context=context)[0].filepath
         created = 0
+        updated = 0
         try:
             if filepath == "":
                 os.chdir(self.LOCALFILEPATH)
@@ -230,12 +231,13 @@ class bsm_importer(osv.osv_memory):
                                     print 'updating bsm for imei: ' + row[3]
                                     vals['bsm_used'] = False
                                     bsm_obj.write(cr, uid, existing, vals, context=context)
+                                    updated += 1
                                     
                         print 'created ' + str(created) + ' bsm rows'
                         csvfile.close()
                         # rename file to mark it read
-                        print 'renaming ' + files + ' to ' + files+'_r' 
-                        os.rename(files, files+'_r')
+                        print 'renaming ' + filepath+files + ' to ' + filepath+files+'_r' 
+                        os.rename(filepath+files, filepath+files+'_r')
                         
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
@@ -244,7 +246,7 @@ class bsm_importer(osv.osv_memory):
         except:
             print 'lol random error'
         
-        return self.pool.get('warning').info(cr, uid, title='BSM', message="%s BSM rows created "%(str(created)))
+        return self.pool.get('warning').info(cr, uid, title='BSM', message="%s BSM rows created, %s BSM rows updated"%(str(created), str(updated)))
     
     
     def addBSM(self, cr, uid, context=None):
