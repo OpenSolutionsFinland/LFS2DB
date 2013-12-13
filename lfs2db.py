@@ -59,6 +59,17 @@ class prodlot_bsm(osv.osv_memory):
     _name = 'stock.production.lot'
     _inherit = 'stock.production.lot'
 
+    def write(self, cr, uid, ids, vals, context=None):
+        print 'updating values'
+        res = super(prodlot_bsm, self).write(cr, uid, ids, vals, context=context)
+        print res
+        if len(ids) > 0:
+            bsm_obj = self.pool.get('bsm.data')
+            lot_obj = self.pool.get('stock.production.lot')
+            for lot in lot_obj.browse(cr, uid, ids, context=context):
+                print 'bsm ids: '
+                print str(lot.bsm_ids)
+            
     _columns = {
         'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
         'bsm_imei_code': fields.related('bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI"),
