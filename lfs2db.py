@@ -69,6 +69,7 @@ class prodlot_bsm(osv.osv_memory):
             for lot in lot_obj.browse(cr, uid, ids, context=context):
                 print 'bsm ids: '
                 print str(lot.bsm_ids)
+        return True
             
     _columns = {
         'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
