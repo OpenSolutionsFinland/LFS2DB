@@ -93,7 +93,7 @@ class stock_move_split_bsm(osv.osv_memory):
         print str(context)
         # Call super class 
         super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
-
+        '''
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
             moves = self.pool.get('stock.move').browse(cr, uid, context['active_id'], context)
@@ -104,6 +104,7 @@ class stock_move_split_bsm(osv.osv_memory):
                 print 'saving bsm id ' + str(self.selectedId) + ' to prodlot ' + str(moves.prodlot_id.id)
                 prodlot_obj.write(cr, uid, moves.prodlot_id.id, {'bsm_id': bsm.id})
                 self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
+        '''
         return True
     
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
