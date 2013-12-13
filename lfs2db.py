@@ -70,7 +70,7 @@ class prodlot_bsm(osv.osv_memory):
                 print 'bsm ids: '
                 print str(lot.bsm_ids)
                 for bsm in lot.bsm_ids:
-                    bsm.write(cr, uid, bsm.id, {'bsm_used': True}, context=context)
+                    bsm_obj.write(cr, uid, bsm.id, {'bsm_used': True}, context=context)
         return True
             
     _columns = {
