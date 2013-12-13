@@ -237,9 +237,9 @@ class bsm_importer(osv.osv_memory):
                         csvfile.close()
                         # rename file to mark it read
                         print 'renaming ' + filepath+files + ' to ' + filepath+files+'r'
-                        os.chown(filepath+files, 'openerp', 'openerp')
+                        os.chmod(filepath+files, 777)
                         os.rename(filepath+files, filepath+files+'r')
-                        #os.lchmod(filepath+files+'r', 666)
+                        os.chmod(filepath+files+'r', 666)
 
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
