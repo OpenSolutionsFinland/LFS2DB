@@ -26,7 +26,6 @@
         		<sheet position="inside">
 					<group string="BSM Information">
 						<field name="bsm_ids" />
-
 					</group>
 				</sheet>
     		</field>
