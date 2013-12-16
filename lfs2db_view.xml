@@ -42,7 +42,7 @@
          		<notebook position="inside">
 					<page string="BSM">
  						<group string="BSM Information">
-							<field name="bsm_ids" />
+							<field name="bsm_id" />
  						</group>
 					</page>
  				</notebook>
