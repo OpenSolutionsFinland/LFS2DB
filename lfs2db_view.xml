@@ -18,6 +18,7 @@
 	   -->
 	
 	   <!-- Inherited stock.move form with bsm data -->
+	   <!--
 	   <record model="ir.ui.view" id="stock_move_extension">
     		<field name="name">stock.move.form.extension</field>
     		<field name="model">stock.move</field>
@@ -26,15 +27,12 @@
         		<sheet position="inside">
 					<group string="BSM Information">
 						<field name="bsm_ids" />
-						<!--
-						<field name="bsm_imei_code"/>
-						<field name="bsm_product_code"/>
-						-->
+
 					</group>
 				</sheet>
     		</field>
 		</record>
-		
+		-->
  	   <!-- Inherited stock.production.lot form with bsm data -->
  	   <record model="ir.ui.view" id="prod_lot_extension">
      		<field name="name">stock.production.lot.extension</field>
@@ -45,11 +43,6 @@
 					<page string="BSM">
  						<group string="BSM Information">
 							<field name="bsm_ids" />
-							<!-- 
-							<field name="bsm_id"/>
-							<field name="bsm_imei_code" readonly="True"/>
-							<field name="bsm_product_code" readonly="True"/>
-							-->
  						</group>
 					</page>
  				</notebook>
