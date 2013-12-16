@@ -18,7 +18,6 @@
 	   -->
 	
 	   <!-- Inherited stock.move form with bsm data -->
-	   <!--
 	   <record model="ir.ui.view" id="stock_move_extension">
     		<field name="name">stock.move.form.extension</field>
     		<field name="model">stock.move</field>
@@ -32,7 +31,7 @@
 				</sheet>
     		</field>
 		</record>
-		-->
+
  	   <!-- Inherited stock.production.lot form with bsm data -->
  	   <record model="ir.ui.view" id="prod_lot_extension">
      		<field name="name">stock.production.lot.extension</field>
