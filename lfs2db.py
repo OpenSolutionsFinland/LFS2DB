@@ -4,7 +4,7 @@ from datetime import datetime as dt
 '''
 Class for holding the data
 '''
-class bsm_data(osv.osv_memory):
+class bsm_data(osv.osv):
     _name = 'bsm.data'
     
     '''
@@ -55,7 +55,7 @@ class bsm_data_relation(osv.osv_memory):
 bsm_data_relation()
 '''
 
-class prodlot_bsm(osv.osv_memory):
+class prodlot_bsm(osv.osv):
     _name = 'stock.production.lot'
     _inherit = 'stock.production.lot'
 
@@ -158,7 +158,7 @@ BSM file importer UI methods and data deserialization
 import os
 import csv
 
-class bsm_importer(osv.osv_memory):
+class bsm_importer(osv.osv):
 
     LOCALFILEPATH = '/home/parallels/bsm/'
     
