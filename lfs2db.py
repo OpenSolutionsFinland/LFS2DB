@@ -79,7 +79,7 @@ class prodlot_bsm(osv.osv_memory):
 
 prodlot_bsm()
 
-
+'''
 class stock_move_split_bsm(osv.osv_memory):
     _name = 'stock.move.split'
     _inherit = 'stock.move.split'
@@ -105,7 +105,7 @@ class stock_move_split_bsm(osv.osv_memory):
         # Call super class 
         super(stock_move_split_bsm, self).split_lot(cr, uid, ids, context=context)
         moves = self.pool.get('stock.move').browse(cr, uid, context['active_id'], context)
-        '''
+        
         print 'selected id: ' + str(self.selectedId)
         if self.selectedId != "":
             moves = self.pool.get('stock.move').browse(cr, uid, context['active_id'], context)
@@ -116,7 +116,7 @@ class stock_move_split_bsm(osv.osv_memory):
                 print 'saving bsm id ' + str(self.selectedId) + ' to prodlot ' + str(moves.prodlot_id.id)
                 prodlot_obj.write(cr, uid, moves.prodlot_id.id, {'bsm_id': bsm.id})
                 self.pool.get('bsm.data').write(cr, uid, bsm.id, {'bsm_used': True})
-        '''
+        
         return True
     
     def selected_bsm_on_change(self, cr, uid, ids, bsm_id, context=None):
@@ -134,19 +134,23 @@ class stock_move_split_bsm(osv.osv_memory):
     }
 
 stock_move_split_bsm()
+'''
 
+'''
 class stock_move_bsm(osv.osv_memory):
     _name = 'stock.move'
     _inherit = 'stock.move'
 
     _columns = {
-        'bsm_imei_code': fields.related('prodlot_id','bsm_id', 'bsm_imei_code', type='char', relation="bsm.data", string="IMEI", readonly=True),
-        'bsm_product_code': fields.related('prodlot_id','bsm_id', 'bsm_product_code', type='char', relation="bsm.data", string="Product", readonly=True),
+        #'bsm_imei_code': fields.related('prodlot_id','bsm_id', 'bsm_imei_code', type='char', relation="bsm.data", string="IMEI", readonly=True),
+        #'bsm_product_code': fields.related('prodlot_id','bsm_id', 'bsm_product_code', type='char', relation="bsm.data", string="Product", readonly=True),
         'bsm_ids': fields.related('prodlot_id','bsm_ids', type='many2many', relation="bsm.data", string="BSM serials")
         #'bsm_ids': fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
     }
 
 stock_move_bsm()
+
+'''
 
 '''
 BSM file importer UI methods and data deserialization
