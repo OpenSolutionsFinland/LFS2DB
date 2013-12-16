@@ -71,9 +71,9 @@ class prodlot_bsm(osv.osv_memory):
         return True
             
     _columns = {
-        'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
-        'bsm_imei_code': fields.related('bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI"),
-        'bsm_product_code': fields.related('bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product code"),
+        #'bsm_id': fields.many2one('bsm.data', 'BSM data', select=True),
+        #'bsm_imei_code': fields.related('bsm_id','bsm_imei_code',type='char', relation="bsm.data", string="IMEI"),
+        #'bsm_product_code': fields.related('bsm_id','bsm_product_code',type='char', relation="bsm.data", string="Product code"),
         'bsm_ids': fields.many2many('bsm.data', 'bsm_data_rel', 'bsm_id', 'prodlot_id', 'BSM serials')
     }
 
