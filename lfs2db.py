@@ -187,9 +187,9 @@ class bsm_importer(osv.osv):
                         if lot:
                             print 'Adding ids ' + str(bsmIDs) + ' to prodlot ' + str(lot.id)
                             lobj = self.pool.get('stock.production.lot')
-                            for i in bsmIDs:
-                                lobj.write(cr, uid, [lot.id], {'bsm_ids': (4, i)})
-                                #lobj.write(cr, uid, [lot.id], {'bsm_ids': (6, 0, bsmIDs)}, context=context)
+                            #for i in bsmIDs:
+                                #lobj.write(cr, uid, [lot.id], {'bsm_ids': (4, i)})
+                            lobj.write(cr, uid, [lot.id], {'bsm_ids': [(6, 0, bsmIDs)]}, context=context)
                             
                         csvfile.close()
                         # rename file to mark it read
