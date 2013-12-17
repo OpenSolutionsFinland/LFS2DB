@@ -33,8 +33,8 @@ class bsm_data(osv.osv):
         #'bsm_date': fields.datetime('Import date'),
         
         'bsm_used': fields.boolean('Used'),
+        'bsm_prodlot_id': fields.many2one('stock.production.lot', 'Lot'),
         
-        # TODO needs a relative field pointing to lot serials?
     }
     
     _defaults = {
@@ -52,10 +52,11 @@ class prodlot_bsm(osv.osv):
         if len(ids) > 0:
             bsm_obj = self.pool.get('bsm.data')
             lot_obj = self.pool.get('stock.production.lot')
+
             for lot in lot_obj.browse(cr, uid, ids, context=context):
                 print str(lot.bsm_ids)
                 for bsm in lot.bsm_ids:
-                    bsm_obj.write(cr, uid, bsm.id, {'bsm_used': True}, context=context)
+                    bsm_obj.write(cr, uid, bsm.id, {'bsm_used': True, 'bsm_prodlot_id': lot.id}, context=context)
         return True
             
     _columns = {
@@ -88,6 +89,7 @@ class bsm_importer(osv.osv):
     
     _name='bsm.importer'
     #_inherit='mrp.product.produce'
+    selected = ""
     
     def _get_selection(self, cr, uid, context=None):
         print 'bsm.importer._get_selection'
@@ -96,6 +98,7 @@ class bsm_importer(osv.osv):
         res = obj.read(cr, uid, ids, ['bsm_imei_code', 'bsm_product_code'], context)
         res = [(r['bsm_product_code'], r['bsm_imei_code']) for r in res]
         return res
+    
     
     def getSerials(self, cr, uid, ids, context=None):
         print 'getSerials()'
@@ -113,6 +116,11 @@ class bsm_importer(osv.osv):
             for files in os.listdir("."):
                 if files.endswith(".bsm"):
                     print 'opening file ' + files
+                    prodlot = None
+                    if self.selected != "":
+                        print "saving bsm data to lot " + str(self.selected)
+                        prodlot = self.selected
+                        
                     with open(files, 'rb') as csvfile:
                         hasHeader = True
                         bsm_obj = self.pool.get('bsm.data')
@@ -128,8 +136,8 @@ class bsm_importer(osv.osv):
                         *XTrac2.3.0BF*= GPS versio
                         *32,1,A,1,1,T0* =HW versio
                         *T2* =takuuaika
-    
                         '''
+                        
                         for row in reader:
                             if reader.line_num == 1 and hasHeader:
                                 print 'header found'
@@ -147,6 +155,7 @@ class bsm_importer(osv.osv):
                                     'bsm_hw_version': row[7],
                                     'bsm_warranty_time': float(row[8][1:]),
                                     'bsm_warranty_code': row[8],
+                                    'bsm_prodlot_id': prodlot,
                                 }
                                 
                                 existing = bsm_obj.search(cr, uid, args=[('name', '=', row[2])])
@@ -214,6 +223,7 @@ class bsm_importer(osv.osv):
     _columns={
         'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),#, selection=_get_selection)
         'imeis_name': fields.selection(_get_selection,'Unused IMEI codes'), 
+        'prodlot_id' : fields.many2one('stock.production.lot', 'Lot'),
         'filepath': fields.char('BSM Filepath', required=False)
     }
     
