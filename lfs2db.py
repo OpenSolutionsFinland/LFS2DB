@@ -125,9 +125,9 @@ class bsm_importer(osv.osv):
                 if files.endswith(".bsm"):
                     print 'opening file ' + files
                     prodlot = None
-                    
-                    #if self.selected != "":
-                    #    print "saving bsm data to lot " + str(self.selected)
+                    lot = obj.browse(cr, uid, ids, context=context)[0].prodlot_id
+                    if lot:
+                        prodlot = lot.id
                     #    prodlot = self.selected
                         
                     with open(files, 'rb') as csvfile:
@@ -164,7 +164,7 @@ class bsm_importer(osv.osv):
                                     'bsm_hw_version': row[7],
                                     'bsm_warranty_time': float(row[8][1:]),
                                     'bsm_warranty_code': row[8],
-                                    'bsm_prodlot_id': obj.browse(cr, uid, ids, context=context)[0].prodlot_id,
+                                    'bsm_prodlot_id': prodlot,
                                 }
                                 
                                 existing = bsm_obj.search(cr, uid, args=[('name', '=', row[2])])
