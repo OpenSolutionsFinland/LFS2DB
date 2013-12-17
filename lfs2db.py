@@ -99,6 +99,13 @@ class bsm_importer(osv.osv):
         res = [(r['bsm_product_code'], r['bsm_imei_code']) for r in res]
         return res
     
+    def on_prodlot_change(cr, uid, ids, prodlot_id):
+        v={}
+        if source:
+            source_obj=self.pool.get('stock.production.lot').browse(cr,uid,prodlot_id)
+            v['source_value']= source_obj.id
+            self.selected = source_obj.id
+        return {'value': v}
     
     def getSerials(self, cr, uid, ids, context=None):
         print 'getSerials()'
