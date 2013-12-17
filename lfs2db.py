@@ -100,6 +100,7 @@ class bsm_importer(osv.osv):
         return res
     
     def on_prodlot_change(cr, uid, ids, prodlot_id):
+        print 'on_prodlot_change'
         v={}
         if prodlot_id:
             source_obj=self.pool.get('stock.production.lot').browse(cr,uid,prodlot_id)
