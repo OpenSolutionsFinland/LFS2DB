@@ -55,7 +55,7 @@
 				<form string="BSM Importer" version="7.0" create="false" edit="false">
 					<group string="BSM" colspan="2">
 							<field name="filepath" />
-							<field name="prodlot_id" on_prodlot_change="(prodlot_id)" />
+							<field name="prodlot_id" on_change="on_prodlot_change(prodlot_id)" />
 							<button name="getSerials" type="object" string="Read Serials" class="oe_highlight"/>
 					</group>
 				</form>
