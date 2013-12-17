@@ -101,7 +101,7 @@ class bsm_importer(osv.osv):
     
     def on_prodlot_change(cr, uid, ids, prodlot_id):
         v={}
-        if source:
+        if prodlot_id:
             source_obj=self.pool.get('stock.production.lot').browse(cr,uid,prodlot_id)
             v['source_value']= source_obj.id
             self.selected = source_obj.id
