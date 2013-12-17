@@ -179,7 +179,8 @@ class bsm_importer(osv.osv):
                                     print 'updating bsm for imei: ' + row[3]
                                     vals['bsm_used'] = False
                                     bsm_obj.write(cr, uid, existing, vals, context=context)
-                                    bsmIDs.append(existing)
+                                    for i in existing:
+                                        bsmIDs.append(i)
                                     updated += 1
                                     
                         print 'created ' + str(created) + ' bsm rows'
