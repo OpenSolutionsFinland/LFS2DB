@@ -191,7 +191,8 @@ class bsm_importer(osv.osv):
                         #os.chmod(filepath+files+'r', 644)
                         # save bsm to lot aswell
                         if lot:
-                            self.pool.get('stock.production.lot').write(cr, uid, bsmIDs, {'bsm_ids': (6, 0, bsmIDs)}, context=context)
+                            print 'Adding ids ' + str(bsmIDs) + ' to prodlot ' + str(lot.id)
+                            self.pool.get('stock.production.lot').write(cr, uid, lot.id, {'bsm_ids': (6, 0, bsmIDs)}, context=context)
                         
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
