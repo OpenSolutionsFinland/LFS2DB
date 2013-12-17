@@ -115,6 +115,7 @@ class bsm_importer(osv.osv):
         filepath = obj.browse(cr, uid, ids, context=context)[0].filepath
         created = 0
         updated = 0
+        bsmIDs = []
         try:
             if filepath == "":
                 os.chdir(self.LOCALFILEPATH)
@@ -171,12 +172,14 @@ class bsm_importer(osv.osv):
                                 if len(existing) == 0:
                                     # create a new bsm
                                     
-                                    bsm_obj.create(cr, uid, vals, context=context)
+                                    newBSM = bsm_obj.create(cr, uid, vals, context=context)
+                                    bsmIDs.append(newBSM)
                                     created += 1
                                 else:
                                     print 'updating bsm for imei: ' + row[3]
                                     vals['bsm_used'] = False
                                     bsm_obj.write(cr, uid, existing, vals, context=context)
+                                    bsmIDs.append(existing)
                                     updated += 1
                                     
                         print 'created ' + str(created) + ' bsm rows'
@@ -186,7 +189,10 @@ class bsm_importer(osv.osv):
                         #os.chmod(filepath+files, 555)
                         os.rename(filepath+files, filepath+files+'r')
                         #os.chmod(filepath+files+'r', 644)
-
+                        # save bsm to lot aswell
+                        if lot:
+                            self.pool.get('stock.production.lot').write(cr, uid, bsmIDs, {'bsm_ids': (6, 0, bsmIDs)}, context=context)
+                        
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
         except ValueError as fe:
