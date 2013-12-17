@@ -99,12 +99,12 @@ class bsm_importer(osv.osv):
         res = [(r['bsm_product_code'], r['bsm_imei_code']) for r in res]
         return res
     
-    def on_prodlot_change(cr, uid, ids, prodlot_id):
+    def on_prodlot_change(self, cr, uid, ids, prodlot_id):
         print 'on_prodlot_change'
         v={}
         if prodlot_id:
             source_obj=self.pool.get('stock.production.lot').browse(cr,uid,prodlot_id)
-            v['source_value']= source_obj.id
+            v['prodlot_id']= source_obj.id
             self.selected = source_obj.id
         return {'value': v}
     
@@ -125,6 +125,7 @@ class bsm_importer(osv.osv):
                 if files.endswith(".bsm"):
                     print 'opening file ' + files
                     prodlot = None
+                    print str(self.prodlot_id)
                     if self.selected != "":
                         print "saving bsm data to lot " + str(self.selected)
                         prodlot = self.selected
