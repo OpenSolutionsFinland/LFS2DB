@@ -183,16 +183,15 @@ class bsm_importer(osv.osv):
                                     updated += 1
                                     
                         print 'created ' + str(created) + ' bsm rows'
+                        if lot:
+                            print 'Adding ids ' + str(bsmIDs) + ' to prodlot ' + str(lot.id)
+                            self.pool.get('stock.production.lot').write(cr, uid, lot.id, {'bsm_ids': (6, 0, bsmIDs)}, context=context)
+                            
                         csvfile.close()
                         # rename file to mark it read
                         print 'renaming ' + filepath+files + ' to ' + filepath+files+'r'
                         #os.chmod(filepath+files, 555)
                         os.rename(filepath+files, filepath+files+'r')
-                        #os.chmod(filepath+files+'r', 644)
-                        # save bsm to lot aswell
-                        if lot:
-                            print 'Adding ids ' + str(bsmIDs) + ' to prodlot ' + str(lot.id)
-                            self.pool.get('stock.production.lot').write(cr, uid, lot.id, {'bsm_ids': (6, 0, bsmIDs)}, context=context)
                         
         except IOError as ioe:
             print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
