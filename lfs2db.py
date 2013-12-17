@@ -186,7 +186,7 @@ class bsm_importer(osv.osv):
                         print 'created ' + str(created) + ' bsm rows'
                         if lot:
                             print 'Adding ids ' + str(bsmIDs) + ' to prodlot ' + str(lot.id)
-                            self.pool.get('stock.production.lot').write(cr, uid, lot.id, {'bsm_ids': (6, 0, bsmIDs)}, context=context)
+                            self.pool.get('stock.production.lot').write(cr, uid, [lot.id], {'bsm_ids': (6, 0, bsmIDs)}, context=context)
                             
                         csvfile.close()
                         # rename file to mark it read
