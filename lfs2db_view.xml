@@ -86,6 +86,7 @@
 					    <field name="bsm_gps_version" />
 						<field name="bsm_hw_version" />     
 						<field name="bsm_warranty_code" />
+						<field name="bsm_prodlot_id" />
 						<field name="bsm_used" />  
  					</group>
  				</form>
@@ -106,7 +107,7 @@
 				    <field name="bsm_gps_version" />
 					<field name="bsm_hw_version" />     
 					<field name="bsm_warranty_code" />
-					<field name="bsm_used" />
+					<field name="bsm_prodlot_id" />
 				 </tree>
 			</field>
 		</record>
