@@ -120,7 +120,7 @@
 				<field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
 				<field name="arch" type="xml">
 					
-					<xpath expr="//field[@name='operation']/form/notebook/page/group/field[@name='prodlot_id']" position="after">
+					<xpath expr="//tree[@string='Operations']/field[@name='prodlot_id']" position="after">
 						<field name="bsm_selection"/>
 					</xpath>
 					
