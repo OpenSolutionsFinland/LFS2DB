@@ -113,7 +113,7 @@
 				 </tree>
 			</field>
 		</record>
-
+		<!-- 
 		<record model="ir.ui.view" id="mrp_repair_bsm">
 	    		<field name="name">mrp.repair.bsm.form</field>
 	    		<field name="model">mrp.repair</field>
@@ -126,7 +126,7 @@
 					
 				</field>
 		</record>
-
+-->
 		<record id="view_bsm_data_search" model="ir.ui.view">
 			<field name="name">bsm.data.search</field>
 			<field name="model">bsm.data</field>
