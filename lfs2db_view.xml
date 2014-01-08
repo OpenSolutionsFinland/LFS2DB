@@ -94,6 +94,7 @@
  			</field>
  		</record>
 		
+		
 		<record model="ir.ui.view" id="view_bsm_data_tree">
 	    	<field name="name">bsm.data.view</field>
 	    	<field name="model">bsm.data</field>
@@ -111,6 +112,17 @@
 					<field name="bsm_prodlot_id" />
 				 </tree>
 			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="mrp_repair_bsm">
+	    		<field name="name">mrp.repair.bsm.form</field>
+	    		<field name="model">mrp.repair</field>
+				<field name="inherit_id" ref="account.invoice_supplier_form"/>
+				<field name="arch" type="xml">
+					<xpath expr="//field[@name='operation']/form/notebook/page/field[@name='prodlot_id']" position="after">
+						<field name="bsm_selection"/>
+					</xpath>
+				</field>
 		</record>
 		
 		<record id="view_bsm_data_search" model="ir.ui.view">
