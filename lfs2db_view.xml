@@ -119,9 +119,11 @@
 	    		<field name="model">mrp.repair</field>
 				<field name="inherit_id" ref="account.invoice_supplier_form"/>
 				<field name="arch" type="xml">
+					<!-- 
 					<xpath expr="//field[@name='operation']/form/notebook/page/field[@name='prodlot_id']" position="after">
 						<field name="bsm_selection"/>
 					</xpath>
+					-->
 				</field>
 		</record>
 		
