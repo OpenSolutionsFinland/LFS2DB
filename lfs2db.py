@@ -253,9 +253,8 @@ class bsm_importer(osv.osv):
 bsm_importer()
 
 class mrp_repair_line_bsm(osv.osv):
-    
-    _name="mrp.repair.line"
-    _inherit="mrp.repair.line"
+    _name="mrp.repair"
+    _inherit="mrp.repair"
     
     _columns={
         'bsm_selection' : fields.many2one('bsm.data', 'BSM', required=False)
