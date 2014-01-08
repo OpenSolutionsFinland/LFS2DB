@@ -30,7 +30,7 @@ OpenERP module for importing data from local file system to database
 ***********************************
     """,
     "website" : "http://www.opensolutions.fi",
-    "depends" : ["base","mrp", "message_box"],
+    "depends" : ["base","mrp","mrp_repair", "message_box"],
     "category" : "General",
     "init_xml" : [],
     "demo_xml" : [],
