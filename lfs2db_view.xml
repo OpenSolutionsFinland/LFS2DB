@@ -113,11 +113,11 @@
 				 </tree>
 			</field>
 		</record>
-		<!-- 
+
 		<record model="ir.ui.view" id="mrp_repair_bsm">
 	    		<field name="name">mrp.repair.bsm.form</field>
 	    		<field name="model">mrp.repair</field>
-				<field name="inherit_id" ref="mrp.mrp_repair_view_form"/>
+				<field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
 				<field name="arch" type="xml">
 					
 					<xpath expr="//field[@name='operation']/form/notebook/page/field[@name='prodlot_id']" position="after">
@@ -126,7 +126,7 @@
 					
 				</field>
 		</record>
--->
+
 		<record id="view_bsm_data_search" model="ir.ui.view">
 			<field name="name">bsm.data.search</field>
 			<field name="model">bsm.data</field>
