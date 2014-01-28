@@ -132,7 +132,7 @@ class bsm_importer(osv.osv):
                     #    prodlot = self.selected
                         
                     with open(files, 'rb') as csvfile:
-                        hasHeader = True
+                        hasHeader = False
                         bsm_obj = self.pool.get('bsm.data')
                         header = []
                         reader = csv.reader(csvfile, delimiter=',', quotechar='*')
@@ -240,7 +240,7 @@ class bsm_importer(osv.osv):
         return res
         
     _columns={
-        'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),#, selection=_get_selection)
+        'imei_selection' : fields.many2one('bsm.data', 'Select IMEI code'),
         'imeis_name': fields.selection(_get_selection,'Unused IMEI codes'), 
         'prodlot_id' : fields.many2one('stock.production.lot', 'Lot'),
         'filepath': fields.char('BSM Filepath', required=False)
