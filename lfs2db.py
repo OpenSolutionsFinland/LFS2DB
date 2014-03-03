@@ -225,7 +225,8 @@ class bsm_importer(osv.osv):
     def _get_bsm_data(self, cr, uid, name, ids, context=None):
         print 'get bsm data'
         obj = self.pool.get('bsm.data')
-        
+    
+    
     def _get_selection(self, cr, uid, context=None):
         print '_get_selection'
         obj = self.pool.get('bsm.data')
@@ -236,7 +237,7 @@ class bsm_importer(osv.osv):
         res = ()
         if len(data) > 0:
             # return list of tuples
-            res = [(r['id'], r['bsm_imei_code']+','+r['bsm_product_code']) for r in data]
+            res = [(r['id'], r['bsm_imei_code']+','+(r['bsm_product_code'] or '')) for r in data]
         return res
         
     _columns={
