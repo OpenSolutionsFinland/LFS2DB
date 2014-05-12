@@ -189,5 +189,5 @@ msgstr "Valitse IMEI-koodi"
 #. module: bsm_importer
 #: field:bsm.data,bsm_delivery_number:0
 msgid "Delivery number"
-msgstr "Toimitustilauksen numero"
+msgstr "Toimitusnro"
 
